@@ -1,5 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
+import { signOut } from "next-auth/react"
 
 import { NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
