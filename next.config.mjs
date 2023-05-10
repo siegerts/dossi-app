@@ -24,7 +24,10 @@ const nextConfig = {
         source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "https://github.com" },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "chrome-extension://ikloefpihdpdonijbfdemfjbeebegagd",
+          },
           {
             key: "Access-Control-Allow-Methods",
             value: "OPTIONS,POST,GET,HEAD",
