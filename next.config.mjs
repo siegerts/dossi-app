@@ -27,7 +27,7 @@ const nextConfig = {
           { key: "Access-Control-Allow-Origin", value: "https://github.com" },
           {
             key: "Access-Control-Allow-Methods",
-            value: "OPTIONS,POST,GET",
+            value: "OPTIONS,POST,GET,HEAD",
           },
           {
             key: "Access-Control-Allow-Headers",
