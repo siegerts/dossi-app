@@ -15,9 +15,9 @@ export const authOptions: NextAuthOptions = {
   // This is a temporary fix for prisma client.
   // @see https://github.com/prisma/prisma/issues/16117
   adapter: PrismaAdapter(db as any),
-  session: {
-    strategy: "jwt",
-  },
+  // session: {
+  //   strategy: "jwt",
+  // },
   pages: {
     signIn: "/login",
   },
@@ -78,15 +78,15 @@ export const authOptions: NextAuthOptions = {
         return session;
       },
       
-      async jwt({ token, user }) {
-        if (user) {
-          // @ts-ignore
-          token.id = user.id;
-          // @ts-ignore
-          token.username = user.username;
-        }
-        return token;
-      }
+      // async jwt({ token, user }) {
+      //   if (user) {
+      //     // @ts-ignore
+      //     token.id = user.id;
+      //     // @ts-ignore
+      //     token.username = user.username;
+      //   }
+      //   return token;
+      // }
 
     
   },
