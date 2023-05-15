@@ -3,7 +3,7 @@ export type SiteConfig = typeof siteConfig
 export const siteConfig = {
   name: "Maintainer",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "Supercharge your GitHub workflow with our Chrome extension, providing smart issue triage, advanced maintenance tools, and leveling up your project management efficiency.",
   mainNav: [
     {
       title: "Home",

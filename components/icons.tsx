@@ -24,12 +24,13 @@ import {
   User,
   X,
   type Icon as LucideIcon,
+  Activity,
 } from "lucide-react"
 
 export type Icon = LucideIcon
 
 export const Icons = {
-  logo: Command,
+  logo: Activity,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,

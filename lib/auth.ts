@@ -11,13 +11,9 @@ import { db } from "@/lib/db"
 const postmarkClient = new Client(env.POSTMARK_API_TOKEN)
 
 export const authOptions: NextAuthOptions = {
-  // huh any! I know.
-  // This is a temporary fix for prisma client.
   // @see https://github.com/prisma/prisma/issues/16117
   adapter: PrismaAdapter(db as any),
-  // session: {
-  //   strategy: "jwt",
-  // },
+  
   pages: {
     signIn: "/login",
   },
@@ -77,17 +73,5 @@ export const authOptions: NextAuthOptions = {
         session.user.username = user.username;
         return session;
       },
-      
-      // async jwt({ token, user }) {
-      //   if (user) {
-      //     // @ts-ignore
-      //     token.id = user.id;
-      //     // @ts-ignore
-      //     token.username = user.username;
-      //   }
-      //   return token;
-      // }
-
-    
   },
 }
