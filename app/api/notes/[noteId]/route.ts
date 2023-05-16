@@ -19,13 +19,13 @@ export async function DELETE(
     // Validate the route params.
     const { params } = routeContextSchema.parse(context)
 
-    // Check if the user has access to this post.
-    if (!(await verifyCurrentUserHasAccessToPost(params.noteId))) {
+    // Check if the user has access to this note.
+    if (!(await verifyCurrentUserHasAccessTonote(params.noteId))) {
       return new Response(null, { status: 403 })
     }
 
-    // Delete the post.
-    await prisma.post.delete({
+    // Delete the note.
+    await prisma.note.delete({
       where: {
         id: params.noteId as string,
       },
@@ -50,8 +50,8 @@ export async function PATCH(
     // Validate route params.
     const { params } = routeContextSchema.parse(context)
 
-    // Check if the user has access to this post.
-    if (!(await verifyCurrentUserHasAccessToPost(params.noteId))) {
+    // Check if the user has access to this note.
+    if (!(await verifyCurrentUserHasAccessTonote(params.noteId))) {
       return new Response(null, { status: 403 })
     }
 
@@ -59,9 +59,9 @@ export async function PATCH(
     const json = await req.json()
     const body = notePatchSchema.parse(json)
 
-    // Update the post.
+    // Update the note.
     // TODO: Implement sanitization for content.
-    await prisma.post.update({
+    await prisma.note.update({
       where: {
         id: params.noteId,
       },
@@ -81,9 +81,9 @@ export async function PATCH(
   }
 }
 
-async function verifyCurrentUserHasAccessToPost(noteId: string) {
+async function verifyCurrentUserHasAccessTonote(noteId: string) {
   const session = await getServerSession(authOptions)
-  const count = await prisma.post.count({
+  const count = await prisma.note.count({
     where: {
       id: noteId,
       authorId: session?.user.id,
