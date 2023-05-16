@@ -17,11 +17,11 @@ export async function GET() {
       return new Response("Unauthorized", { status: 403 })
     }
 
-    const {user} = session
+    const { user } = session
   
     const notes = await prisma.note.findMany({
       where: {
-        userId: user.id,
+        authorId: user.id,
       },
     })
 
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
       data: {
         title,
         content,
-        userId: user.id,
+        authorId: user.id,
       },
     })
 
