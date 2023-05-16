@@ -6,13 +6,13 @@ import { Client } from "postmark"
 
 import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
-import { db } from "@/lib/db"
+import prisma from "@/lib/prisma"
 
 const postmarkClient = new Client(env.POSTMARK_API_TOKEN)
 
 export const authOptions: NextAuthOptions = {
   // @see https://github.com/prisma/prisma/issues/16117
-  adapter: PrismaAdapter(db as any),
+  adapter: PrismaAdapter(prisma as any),
   
   pages: {
     signIn: "/login",
