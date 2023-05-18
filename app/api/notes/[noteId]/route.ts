@@ -66,7 +66,6 @@ export async function PATCH(
         id: params.noteId,
       },
       data: {
-        title: body.title,
         content: body.content,
       },
     })

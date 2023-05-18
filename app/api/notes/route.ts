@@ -1,11 +1,11 @@
 import { getServerSession } from "next-auth/next"
+import * as z from "zod"
+
 import { authOptions } from "@/lib/auth"
 import { RequiresProPlanError } from "@/lib/exceptions"
 import prisma from "@/lib/prisma"
-import * as z from "zod"
 
 const postCreateSchema = z.object({
-  title: z.string(),
   content: z.string().optional(),
 })
 
@@ -18,20 +18,17 @@ export async function GET() {
     }
 
     const { user } = session
-  
+
     const notes = await prisma.note.findMany({
       where: {
         authorId: user.id,
       },
     })
 
-   
     return new Response(JSON.stringify(notes), { status: 200 })
-  
   } catch (error) {
     return new Response(null, { status: 500 })
   }
-
 }
 
 export async function POST(req: Request) {
@@ -61,20 +58,17 @@ export async function POST(req: Request) {
     // }
 
     const json = await req.json()
-  
-    const { title, content } = postCreateSchema.parse(json)
+
+    const { content } = postCreateSchema.parse(json)
 
     const note = await prisma.note.create({
       data: {
-        title,
         content,
         authorId: user.id,
       },
     })
 
     return new Response(JSON.stringify(note), { status: 201 })
-    
-  
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 })
