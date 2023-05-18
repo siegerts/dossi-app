@@ -11,6 +11,12 @@ datasource db {
   relationMode = "prisma"
 }
 
+enum Role {
+  ADMIN
+  USER
+  TEST
+}
+
 model Account {
   id                String   @id @default(cuid())
   userId            String
@@ -49,6 +55,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  role          Role      @default(USER)
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
 

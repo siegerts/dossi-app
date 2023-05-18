@@ -1,10 +1,10 @@
+import { env } from "@/env.mjs"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { NextAuthOptions } from "next-auth"
 import EmailProvider from "next-auth/providers/email"
 import GitHubProvider from "next-auth/providers/github"
 import { Client } from "postmark"
 
-import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
 import prisma from "@/lib/prisma"
 
@@ -13,7 +13,7 @@ const postmarkClient = new Client(env.POSTMARK_API_TOKEN)
 export const authOptions: NextAuthOptions = {
   // @see https://github.com/prisma/prisma/issues/16117
   adapter: PrismaAdapter(prisma as any),
-  
+
   pages: {
     signIn: "/login",
   },
@@ -66,12 +66,14 @@ export const authOptions: NextAuthOptions = {
     // }),
   ],
   callbacks: {
-      async session({ session, user }) {
-        // @ts-ignore
-        session.user.id = user.id;
-        // @ts-ignore
-        session.user.username = user.username;
-        return session;
-      },
+    async session({ session, user }) {
+      // @ts-ignore
+      session.user.id = user.id
+      // @ts-ignore
+      session.user.username = user.username
+      // @ts-ignore
+      session.user.role = user.role
+      return session
+    },
   },
 }
