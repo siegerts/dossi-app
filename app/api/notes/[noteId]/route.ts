@@ -20,7 +20,7 @@ export async function DELETE(
     const { params } = routeContextSchema.parse(context)
 
     // Check if the user has access to this note.
-    if (!(await verifyCurrentUserHasAccessTonote(params.noteId))) {
+    if (!(await verifyCurrentUserHasAccessToNote(params.noteId))) {
       return new Response(null, { status: 403 })
     }
 
@@ -45,13 +45,13 @@ export async function PATCH(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
-    // check for session sooner
+  // check for session sooner
   try {
     // Validate route params.
     const { params } = routeContextSchema.parse(context)
 
     // Check if the user has access to this note.
-    if (!(await verifyCurrentUserHasAccessTonote(params.noteId))) {
+    if (!(await verifyCurrentUserHasAccessToNote(params.noteId))) {
       return new Response(null, { status: 403 })
     }
 
@@ -80,7 +80,7 @@ export async function PATCH(
   }
 }
 
-async function verifyCurrentUserHasAccessTonote(noteId: string) {
+async function verifyCurrentUserHasAccessToNote(noteId: string) {
   const session = await getServerSession(authOptions)
   const count = await prisma.note.count({
     where: {

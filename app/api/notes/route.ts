@@ -21,6 +21,10 @@ export async function GET() {
     const { user } = session
 
     // const {}
+    // owner
+    // repo
+    // type
+    // num
     // https://github.com/TanStack/query/issues/5436
     // https://github.com/TanStack/query/discussions/1098
     // https://github.com/TanStack/query/pull/5431
