@@ -11,6 +11,38 @@ const routeContextSchema = z.object({
   }),
 })
 
+export async function GET(
+  req: Request,
+  context: z.infer<typeof routeContextSchema>
+) {
+  try {
+    const session = await getServerSession(authOptions)
+
+    if (!session) {
+      return new Response("Unauthorized", { status: 403 })
+    }
+
+    const { user } = session
+    const { params } = routeContextSchema.parse(context)
+
+    // find the note that matches the id and belongs to the user
+    const note = await prisma.note.findFirst({
+      where: {
+        id: params.noteId,
+        userId: user.id,
+      },
+    })
+
+    return new Response(JSON.stringify(note), { status: 200 })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 })
+    }
+
+    return new Response(null, { status: 500 })
+  }
+}
+
 export async function DELETE(
   req: Request,
   context: z.infer<typeof routeContextSchema>
