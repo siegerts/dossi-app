@@ -63,6 +63,8 @@ model User {
   sessions Session[]
   Note     Note[]
   Pin      Pin[]
+  // Label    Label[]
+  Reminder Reminder[]
 
   // stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
   // stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
@@ -90,7 +92,9 @@ model Note {
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   userId    String
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // Label    Label[]
+  Reminder Reminder[]
 
   @@map(name: "notes")
 }
@@ -102,7 +106,41 @@ model Pin {
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   userId    String
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Reminder Reminder[]
 
   @@map(name: "pins")
 }
+
+model Reminder {
+  id        String   @id @default(cuid())
+  remindAt  DateTime @map(name: "remind_at")
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  userId    String
+  noteId    String?
+  pinId     String?
+
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  note Note? @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  pin  Pin?  @relation(fields: [pinId], references: [id], onDelete: Cascade)
+
+  @@map(name: "reminders")
+}
+
+// model Label {
+//   id          String  @id @default(cuid())
+//   name        String
+//   description String?
+//   color       String?
+
+//   createdAt DateTime @default(now()) @map(name: "created_at")
+//   updatedAt DateTime @default(now()) @map(name: "updated_at")
+//   userId    String
+//   noteId    String
+
+//   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   note Note @relation(fields: [noteId], references: [id])
+
+//   @@map(name: "labels")
+// }
