@@ -7,6 +7,7 @@ import prisma from "@/lib/prisma"
 
 const postCreateSchema = z.object({
   content: z.string().optional(),
+  url: z.string().url({ message: "Invalid url" }),
 })
 
 export async function GET() {
@@ -18,6 +19,11 @@ export async function GET() {
     }
 
     const { user } = session
+
+    // const {}
+    // https://github.com/TanStack/query/issues/5436
+    // https://github.com/TanStack/query/discussions/1098
+    // https://github.com/TanStack/query/pull/5431
 
     const notes = await prisma.note.findMany({
       where: {
@@ -59,11 +65,12 @@ export async function POST(req: Request) {
 
     const json = await req.json()
 
-    const { content } = postCreateSchema.parse(json)
+    const { content, url } = postCreateSchema.parse(json)
 
     const note = await prisma.note.create({
       data: {
         content,
+        url,
         authorId: user.id,
       },
     })
