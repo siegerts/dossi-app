@@ -45,7 +45,7 @@ async function verifyCurrentUserHasAccessToPin(pinId: string) {
   const count = await prisma.pin.count({
     where: {
       id: pinId,
-      authorId: session?.user.id,
+      userId: session?.user.id,
     },
   })
 

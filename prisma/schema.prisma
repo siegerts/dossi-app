@@ -88,9 +88,9 @@ model Note {
   content   String?
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
-  authorId  String
+  userId    String
 
-  author User @relation(fields: [authorId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map(name: "notes")
 }
@@ -100,9 +100,9 @@ model Pin {
   url       String
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
-  authorId  String
+  userId    String
 
-  author User @relation(fields: [authorId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map(name: "pins")
 }

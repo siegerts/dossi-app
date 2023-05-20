@@ -31,7 +31,7 @@ export async function GET() {
 
     const notes = await prisma.note.findMany({
       where: {
-        authorId: user.id,
+        userId: user.id,
       },
     })
 
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
     // if (!subscriptionPlan?.isPro) {
     //   const count = await prisma.post.count({
     //     where: {
-    //       authorId: user.id,
+    //       userId: user.id,
     //     },
     //   })
 
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
       data: {
         content,
         url,
-        authorId: user.id,
+        userId: user.id,
       },
     })
 

@@ -21,7 +21,7 @@ export async function GET() {
 
     const pins = await prisma.pin.findMany({
       where: {
-        authorId: user.id,
+        userId: user.id,
       },
     })
 
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
     // if (!subscriptionPlan?.isPro) {
     //   const count = await prisma.post.count({
     //     where: {
-    //       authorId: user.id,
+    //       userId: user.id,
     //     },
     //   })
 
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
     const pin = await prisma.pin.create({
       data: {
         url,
-        authorId: user.id,
+        userId: user.id,
       },
     })
 

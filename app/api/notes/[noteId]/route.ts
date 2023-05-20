@@ -85,7 +85,7 @@ async function verifyCurrentUserHasAccessToNote(noteId: string) {
   const count = await prisma.note.count({
     where: {
       id: noteId,
-      authorId: session?.user.id,
+      userId: session?.user.id,
     },
   })
 
