@@ -5,8 +5,8 @@ import { authOptions } from "@/lib/auth"
 import { RequiresProPlanError } from "@/lib/exceptions"
 import prisma from "@/lib/prisma"
 
-const postCreateSchema = z.object({
-  content: z.string().optional(),
+const noteCreateSchema = z.object({
+  content: z.string(),
   url: z.string().url({ message: "Invalid url" }),
 })
 
@@ -69,7 +69,7 @@ export async function POST(req: Request) {
 
     const json = await req.json()
 
-    const { content, url } = postCreateSchema.parse(json)
+    const { content, url } = noteCreateSchema.parse(json)
 
     const note = await prisma.note.create({
       data: {
