@@ -1,3 +1,4 @@
+import { NextApiRequest } from "next"
 import { getServerSession } from "next-auth/next"
 import * as z from "zod"
 
@@ -14,7 +15,7 @@ const noteByUrlSchema = z.object({
   url: z.string().url({ message: "Invalid url" }),
 })
 
-export async function GET(req: Request) {
+export async function GET(req: NextApiRequest) {
   try {
     const session = await getServerSession(authOptions)
 
@@ -24,11 +25,11 @@ export async function GET(req: Request) {
 
     const { user } = session
 
-    const json = await req.json()
+    const { url } = req.query
 
     let notes: any[] = []
 
-    if (!json) {
+    if (!url) {
       notes = await prisma.note.findMany({
         where: {
           userId: user.id,
@@ -36,7 +37,7 @@ export async function GET(req: Request) {
       })
     } else {
       // not my fav, but will filter for now
-      const { url } = noteByUrlSchema.parse(json)
+      const { url } = noteByUrlSchema.parse(req.query)
       notes = await prisma.note.findMany({
         where: {
           userId: user.id,
