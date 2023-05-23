@@ -10,7 +10,11 @@ const noteCreateSchema = z.object({
   url: z.string().url({ message: "Invalid url" }),
 })
 
-export async function GET() {
+const noteByUrlSchema = z.object({
+  url: z.string().url({ message: "Invalid url" }),
+})
+
+export async function GET(req: Request) {
   try {
     const session = await getServerSession(authOptions)
 
@@ -20,23 +24,32 @@ export async function GET() {
 
     const { user } = session
 
-    // const {}
-    // owner
-    // repo
-    // type
-    // num
-    // https://github.com/TanStack/query/issues/5436
-    // https://github.com/TanStack/query/discussions/1098
-    // https://github.com/TanStack/query/pull/5431
+    const json = await req.json()
 
-    const notes = await prisma.note.findMany({
-      where: {
-        userId: user.id,
-      },
-    })
+    let notes: any[] = []
+
+    if (!json) {
+      notes = await prisma.note.findMany({
+        where: {
+          userId: user.id,
+        },
+      })
+    } else {
+      // not my fav, but will filter for now
+      const { url } = noteByUrlSchema.parse(json)
+      notes = await prisma.note.findMany({
+        where: {
+          userId: user.id,
+          url,
+        },
+      })
+    }
 
     return new Response(JSON.stringify(notes), { status: 200 })
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 })
+    }
     return new Response(null, { status: 500 })
   }
 }
