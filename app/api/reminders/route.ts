@@ -64,8 +64,9 @@ export async function POST(req: Request) {
 
     const reminder = await prisma.reminder.create({
       data: {
-        remindAt: at,
         url,
+        remindAt: at,
+        userId: user.id,
       },
     })
 
