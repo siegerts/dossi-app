@@ -5,16 +5,10 @@ import { authOptions } from "@/lib/auth"
 import { RequiresProPlanError } from "@/lib/exceptions"
 import prisma from "@/lib/prisma"
 
-const reminderCreateSchema = z
-  .object({
-    at: z.string().datetime(),
-    note: z.string().optional(),
-    pin: z.string().optional(),
-  })
-  .refine((data) => Boolean(data.note) || Boolean(data.pin), {
-    message: "At least one of `note` or `pin` must be provided",
-    path: ["note", "pin"],
-  })
+const reminderCreateSchema = z.object({
+  at: z.string().datetime(),
+  url: z.string().url({ message: "Invalid url" }),
+})
 
 export async function GET() {
   try {
@@ -66,14 +60,12 @@ export async function POST(req: Request) {
 
     const json = await req.json()
 
-    const { at, note, pin } = reminderCreateSchema.parse(json)
+    const { at, url } = reminderCreateSchema.parse(json)
 
     const reminder = await prisma.reminder.create({
       data: {
         remindAt: at,
-        noteId: note,
-        pinId: pin,
-        userId: user.id,
+        url,
       },
     })
 

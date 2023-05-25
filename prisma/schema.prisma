@@ -92,9 +92,7 @@ model Note {
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   userId    String
 
-  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  // Label    Label[]
-  Reminder Reminder[]
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map(name: "notes")
 }
@@ -106,8 +104,7 @@ model Pin {
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   userId    String
 
-  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Reminder Reminder[]
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map(name: "pins")
 }
@@ -118,12 +115,9 @@ model Reminder {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   userId    String
-  noteId    String?
-  pinId     String?
+  url       String?
 
-  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  note Note? @relation(fields: [noteId], references: [id], onDelete: Cascade)
-  pin  Pin?  @relation(fields: [pinId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map(name: "reminders")
 }
