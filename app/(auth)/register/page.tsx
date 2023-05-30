@@ -31,7 +31,7 @@ export default function RegisterPage() {
               Create an account
             </h1>
             <p className="text-sm text-muted-foreground">
-              Enter your email below to create your account
+              Sign in below to create your account
             </p>
           </div>
           <UserAuthForm />
