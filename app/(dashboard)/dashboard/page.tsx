@@ -4,7 +4,6 @@ import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 
-
 export const metadata = {
   title: "Dashboard",
 }
@@ -16,24 +15,30 @@ export default async function DashboardPage() {
     redirect(authOptions?.pages?.signIn || "/login")
   }
 
-//   const posts = await prisma.post.findMany({
-//     where: {
-//       authorId: user.id,
-//     },
-//     select: {
-//       id: true,
-//       title: true,
-//       published: true,
-//       createdAt: true,
-//     },
-//     orderBy: {
-//       updatedAt: "desc",
-//     },
-//   })
+  const notes = await prisma.note.findMany({
+    where: {
+      userId: user.id,
+    },
+    select: {
+      id: true,
+      content: true,
+      url: true,
+      createdAt: true,
+    },
+    orderBy: {
+      updatedAt: "desc",
+    },
+  })
 
   return (
-    <>
-    Empty authed dashboard
-    </>
+    <div>
+      <h1>Dashboard</h1>
+      {notes.map((note) => (
+        <div key={note.id}>
+          <p>{note.content}</p>
+          <p>{note.url}</p>
+        </div>
+      ))}
+    </div>
   )
 }
