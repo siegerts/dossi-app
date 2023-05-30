@@ -107,6 +107,7 @@ export const authOptions: NextAuthOptions = {
         name: dbUser.name,
         email: dbUser.email,
         picture: dbUser.image,
+        ...(["ADMIN", "TEST"].includes(dbUser.role) && { role: dbUser.role }),
       }
     },
   },
