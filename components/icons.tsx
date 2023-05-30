@@ -1,4 +1,5 @@
 import {
+  Activity,
   AlertTriangle,
   ArrowRight,
   Check,
@@ -11,10 +12,12 @@ import {
   HelpCircle,
   Image,
   Laptop,
+  Library,
   Loader2,
   LucideProps,
   Moon,
   MoreVertical,
+  Pin,
   Pizza,
   Plus,
   Settings,
@@ -24,13 +27,12 @@ import {
   User,
   X,
   type Icon as LucideIcon,
-  Activity,
 } from "lucide-react"
 
 export type Icon = LucideIcon
 
 export const Icons = {
-  logo: Activity,
+  logo: Library,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
@@ -42,6 +44,7 @@ export const Icons = {
   settings: Settings,
   billing: CreditCard,
   ellipsis: MoreVertical,
+  pin: Pin,
   add: Plus,
   warning: AlertTriangle,
   user: User,
