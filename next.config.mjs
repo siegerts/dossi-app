@@ -6,19 +6,6 @@ const nextConfig = {
   },
   async headers() {
     return [
-      // {
-      //   source: "/:slug",
-      //   headers: [
-      //     {
-      //       key: "Referrer-Policy",
-      //       value: "no-referrer-when-downgrade",
-      //     },
-      //     {
-      //       key: "X-DNS-Prefetch-Control",
-      //       value: "on",
-      //     },
-      //   ],
-      // },
       {
         // matching all API routes
         source: "/api/:path*",
