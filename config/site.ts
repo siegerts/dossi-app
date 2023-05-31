@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Maintainer",
+  name: "dossi",
   description:
-    "Supercharge your GitHub workflow with our Chrome extension, providing smart issue triage, advanced maintenance tools, and leveling up your project management efficiency.",
+    "Supercharge your GitHub workflow with our Chrome extension, providing smart issue triage, advanced tools, and leveling up your project management efficiency.",
   mainNav: [
     {
       title: "Home",
@@ -11,7 +11,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    twitter: "https://twitter.com/siegerts",
+    twitter: "https://twitter.com/dossidev",
     // github: "https://github.com/shadcn/ui",
     docs: "https://ui.shadcn.com",
   },

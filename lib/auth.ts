@@ -84,6 +84,10 @@ export const authOptions: NextAuthOptions = {
         session.user.name = token.name
         session.user.email = token.email
         session.user.image = token.picture
+        if (token.role) {
+          // @ts-ignore
+          session.user.role = token.role
+        }
       }
 
       return session
@@ -107,7 +111,7 @@ export const authOptions: NextAuthOptions = {
         name: dbUser.name,
         email: dbUser.email,
         picture: dbUser.image,
-        ...(["ADMIN", "TEST"].includes(dbUser.role) && { role: dbUser.role }),
+        role: ["ADMIN", "TEST"].includes(dbUser.role) ? dbUser.role : undefined,
       }
     },
   },
