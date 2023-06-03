@@ -15,7 +15,7 @@ export default async function DashboardPage() {
     redirect(authOptions?.pages?.signIn || "/login")
   }
 
-  const notes = await prisma.note.findMany({
+  let notes = await prisma.note.findMany({
     where: {
       userId: user.id,
     },
@@ -30,6 +30,8 @@ export default async function DashboardPage() {
     },
   })
 
+  notes = JSON.parse(JSON.stringify(notes))
+
   return (
     <div>
       <h1>Dashboard</h1>
@@ -37,6 +39,7 @@ export default async function DashboardPage() {
         <div key={note.id}>
           <p>{note.content}</p>
           <p>{note.url}</p>
+          <p>{note.createdAt}</p>
         </div>
       ))}
     </div>
