@@ -62,11 +62,28 @@ export async function POST(req: Request) {
 
     const { at, url } = reminderCreateSchema.parse(json)
 
+    // const reminder = await prisma.reminder.create({
+    //   data: {
+    //     url,
+    //     remindAt: at,
+    //     userId: user.id,
+    //   },
+    // })
     const reminder = await prisma.reminder.create({
       data: {
         url,
         remindAt: at,
-        userId: user.id,
+        user: {
+          connect: {
+            id: user.id,
+          },
+        },
+        entity: {
+          connectOrCreate: {
+            where: { userId_url: { userId: user.id, url } },
+            create: { url: url, userId: user.id },
+          },
+        },
       },
     })
 

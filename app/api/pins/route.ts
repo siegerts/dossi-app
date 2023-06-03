@@ -61,10 +61,28 @@ export async function POST(req: Request) {
 
     const { url } = pinCreateSchema.parse(json)
 
+    // TODO: here
+    // const pin = await prisma.pin.create({
+    //   data: {
+    //     url,
+    //     userId: user.id,
+    //   },
+    // })
+
     const pin = await prisma.pin.create({
       data: {
         url,
-        userId: user.id,
+        user: {
+          connect: {
+            id: user.id,
+          },
+        },
+        entity: {
+          connectOrCreate: {
+            where: { userId_url: { userId: user.id, url } },
+            create: { url: url, userId: user.id },
+          },
+        },
       },
     })
 
