@@ -3,6 +3,7 @@ import { JWT } from "next-auth/jwt"
 
 type UserId = string
 type Role = string
+type Plan = string
 
 declare module "next-auth/jwt" {
   interface JWT {
@@ -15,11 +16,13 @@ declare module "next-auth" {
     user: User & {
       id: UserId
       role: Role
+      plan: Plan
     }
   }
 
   interface User extends DefaultUser {
     id: string
     role: string
+    plan: string
   }
 }
