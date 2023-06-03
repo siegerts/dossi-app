@@ -61,30 +61,32 @@ export async function POST(req: Request) {
 
     const { url } = pinCreateSchema.parse(json)
 
-    // TODO: here
-    // const pin = await prisma.pin.create({
-    //   data: {
-    //     url,
-    //     userId: user.id,
-    //   },
-    // })
-
-    const pin = await prisma.pin.create({
-      data: {
-        url,
-        user: {
-          connect: {
-            id: user.id,
+    let pin
+    try {
+      pin = await prisma.pin.create({
+        data: {
+          url,
+          user: {
+            connect: {
+              id: user.id,
+            },
+          },
+          entity: {
+            connectOrCreate: {
+              where: { userId_url: { userId: user.id, url } },
+              create: { url: url, userId: user.id },
+            },
           },
         },
-        entity: {
-          connectOrCreate: {
-            where: { userId_url: { userId: user.id, url } },
-            create: { url: url, userId: user.id },
-          },
-        },
-      },
-    })
+      })
+    } catch (error: any) {
+      if (error?.code === "P2002") {
+        console.log(
+          "There is a unique constraint violation, a new pin cannot be created with this URL and user ID"
+        )
+      }
+      return new Response(null, { status: 400 })
+    }
 
     return new Response(JSON.stringify(pin), { status: 201 })
   } catch (error) {
