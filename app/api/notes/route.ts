@@ -87,7 +87,17 @@ export async function POST(req: Request) {
       data: {
         content,
         url,
-        userId: user.id,
+        user: {
+          connect: {
+            id: user.id,
+          },
+        },
+        entity: {
+          connectOrCreate: {
+            where: { userId_url: { userId: user.id, url } },
+            create: { url: url, userId: user.id },
+          },
+        },
       },
     })
 
