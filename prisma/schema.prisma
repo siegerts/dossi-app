@@ -124,7 +124,7 @@ model Pin {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
-  @@index([userId, entityId], name: "userId_entityId")
+  @@unique([userId, url])
   @@map(name: "pins")
 }
 
