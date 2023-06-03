@@ -50,26 +50,25 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  role          Role      @default(USER)
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
-
-  accounts Account[]
-  sessions Session[]
-  Note     Note[]
-  Pin      Pin[]
+  id                     String     @id @default(cuid())
+  name                   String?
+  email                  String?    @unique
+  emailVerified          DateTime?
+  image                  String?
+  role                   Role       @default(USER)
+  createdAt              DateTime   @default(now()) @map(name: "created_at")
+  updatedAt              DateTime   @default(now()) @map(name: "updated_at")
+  stripeCustomerId       String?    @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?    @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?    @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime?  @map(name: "stripe_current_period_end")
+  Entity                 Entity[]
+  Note                   Note[]
+  Pin                    Pin[]
   // Label    Label[]
-  Reminder Reminder[]
-
-  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+  Reminder               Reminder[]
+  Account                Account[]
+  Session                Session[]
 
   @@map(name: "users")
 }
@@ -83,6 +82,23 @@ model VerificationToken {
   @@map(name: "verification_tokens")
 }
 
+model Entity {
+  id        String   @id @default(cuid())
+  url       String
+  userId    String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+  Note     Note[]
+  Pin      Pin[]
+  // Label    Label[]
+  Reminder Reminder[]
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, url])
+  @@map(name: "entities")
+}
+
 model Note {
   id        String   @id @default(cuid())
   // content   Json?
@@ -91,8 +107,9 @@ model Note {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   userId    String
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entityId  String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
   @@map(name: "notes")
 }
@@ -103,9 +120,11 @@ model Pin {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   userId    String
+  entityId  String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  @@index([userId, entityId], name: "userId_entityId")
   @@map(name: "pins")
 }
 
@@ -114,10 +133,11 @@ model Reminder {
   remindAt  DateTime @map(name: "remind_at")
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
-  userId    String
   url       String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  entityId  String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
   @@map(name: "reminders")
 }
