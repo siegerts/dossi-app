@@ -39,7 +39,7 @@ export default async function DashboardPage() {
         <div key={note.id}>
           <p>{note.content}</p>
           <p>{note.url}</p>
-          <p>{note.createdAt}</p>
+          <p>{note.createdAt.toString()}</p>
         </div>
       ))}
     </div>
