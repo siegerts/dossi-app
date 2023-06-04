@@ -34,6 +34,19 @@ export async function GET(req: NextRequest) {
           userId: user.id,
           url,
         },
+        select: {
+          id: true,
+          createdAt: true,
+          updatedAt: true,
+          notes: {
+            select: {
+              id: true,
+              content: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          },
+        },
       })
       return new Response(JSON.stringify(entity), { status: 200 })
     }

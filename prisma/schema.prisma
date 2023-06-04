@@ -62,11 +62,11 @@ model User {
   stripeSubscriptionId   String?    @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?    @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime?  @map(name: "stripe_current_period_end")
-  Entity                 Entity[]
-  Note                   Note[]
-  Pin                    Pin[]
-  // Label    Label[]
-  Reminder               Reminder[]
+  entities               Entity[]
+  notes                  Note[]
+  pins                   Pin[]
+  // labels    Label[]
+  reminders              Reminder[]
   Account                Account[]
   Session                Session[]
 
@@ -89,11 +89,11 @@ model Entity {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
 
-  Note     Note[]
-  Pin      Pin[]
+  notes     Note[]
+  pins      Pin[]
   // Label    Label[]
-  Reminder Reminder[]
-  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reminders Reminder[]
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, url])
   @@map(name: "entities")
