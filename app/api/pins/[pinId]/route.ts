@@ -47,18 +47,24 @@ export async function DELETE(
   context: z.infer<typeof routeContextSchema>
 ) {
   try {
+    const session = await getServerSession(authOptions)
+
+    if (!session) {
+      return new Response("Unauthorized", { status: 403 })
+    }
     // Validate the route params.
     const { params } = routeContextSchema.parse(context)
 
-    // Check if the user has access to this note.
-    if (!(await verifyCurrentUserHasAccessToPin(params.pinId))) {
-      return new Response(null, { status: 403 })
-    }
-
-    // Delete the note.
-    await prisma.pin.delete({
-      where: {
-        id: params.pinId as string,
+    await prisma.user.update({
+      where: { id: session?.user.id },
+      data: {
+        pins: {
+          delete: [
+            {
+              id: params.pinId,
+            },
+          ],
+        },
       },
     })
 
@@ -70,16 +76,4 @@ export async function DELETE(
 
     return new Response(null, { status: 500 })
   }
-}
-
-async function verifyCurrentUserHasAccessToPin(pinId: string) {
-  const session = await getServerSession(authOptions)
-  const count = await prisma.pin.count({
-    where: {
-      id: pinId,
-      userId: session?.user.id,
-    },
-  })
-
-  return count > 0
 }

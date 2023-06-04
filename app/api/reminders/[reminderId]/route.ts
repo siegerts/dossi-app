@@ -48,18 +48,25 @@ export async function DELETE(
   context: z.infer<typeof routeContextSchema>
 ) {
   try {
+    const session = await getServerSession(authOptions)
+
+    if (!session) {
+      return new Response("Unauthorized", { status: 403 })
+    }
+
     // Validate the route params.
     const { params } = routeContextSchema.parse(context)
 
-    // Check if the user has access to this reminder.
-    if (!(await verifyCurrentUserHasAccessToReminder(params.reminderId))) {
-      return new Response(null, { status: 403 })
-    }
-
-    // Delete the reminder.
-    await prisma.reminder.delete({
-      where: {
-        id: params.reminderId as string,
+    await prisma.user.update({
+      where: { id: session?.user.id },
+      data: {
+        reminders: {
+          delete: [
+            {
+              id: params.reminderId,
+            },
+          ],
+        },
       },
     })
 
@@ -79,25 +86,31 @@ export async function PATCH(
 ) {
   // check for session sooner
   try {
+    const session = await getServerSession(authOptions)
+
+    if (!session) {
+      return new Response("Unauthorized", { status: 403 })
+    }
     // Validate route params.
     const { params } = routeContextSchema.parse(context)
-
-    // Check if the user has access to this reminder.
-    if (!(await verifyCurrentUserHasAccessToReminder(params.reminderId))) {
-      return new Response(null, { status: 403 })
-    }
 
     // Get the request body and validate it.
     const json = await req.json()
     const body = reminderPatchSchema.parse(json)
 
-    // Update the reminder date.
-    await prisma.reminder.update({
-      where: {
-        id: params.reminderId,
-      },
+    await prisma.user.update({
+      where: { id: session?.user.id },
       data: {
-        remindAt: body.at,
+        reminders: {
+          update: {
+            where: {
+              id: params.reminderId,
+            },
+            data: {
+              remindAt: body.at,
+            },
+          },
+        },
       },
     })
 
@@ -109,16 +122,4 @@ export async function PATCH(
 
     return new Response(null, { status: 500 })
   }
-}
-
-async function verifyCurrentUserHasAccessToReminder(reminderId: string) {
-  const session = await getServerSession(authOptions)
-  const count = await prisma.reminder.count({
-    where: {
-      id: reminderId,
-      userId: session?.user.id,
-    },
-  })
-
-  return count > 0
 }
