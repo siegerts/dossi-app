@@ -84,6 +84,7 @@ model VerificationToken {
 
 model Entity {
   id        String   @id @default(cuid())
+  title     String?
   url       String
   userId    String
   createdAt DateTime @default(now()) @map(name: "created_at")
