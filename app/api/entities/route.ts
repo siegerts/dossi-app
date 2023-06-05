@@ -46,6 +46,13 @@ export async function GET(req: NextRequest) {
               updatedAt: true,
             },
           },
+          pins: {
+            select: {
+              id: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          },
         },
       })
       return new Response(JSON.stringify(entity), { status: 200 })
