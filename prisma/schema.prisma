@@ -65,7 +65,7 @@ model User {
   entities               Entity[]
   notes                  Note[]
   pins                   Pin[]
-  // labels    Label[]
+  labels                 Label[]
   reminders              Reminder[]
   Account                Account[]
   Session                Session[]
@@ -92,7 +92,7 @@ model Entity {
 
   notes     Note[]
   pins      Pin[]
-  // Label    Label[]
+  labels    Label[]
   reminders Reminder[]
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -143,19 +143,19 @@ model Reminder {
   @@map(name: "reminders")
 }
 
-// model Label {
-//   id          String  @id @default(cuid())
-//   name        String
-//   description String?
-//   color       String?
+model Label {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  color       String?
 
-//   createdAt DateTime @default(now()) @map(name: "created_at")
-//   updatedAt DateTime @default(now()) @map(name: "updated_at")
-//   userId    String
-//   noteId    String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  userId    String
+  entityId  String
 
-//   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   note Note @relation(fields: [noteId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entity Entity @relation(fields: [entityId], references: [id])
 
-//   @@map(name: "labels")
-// }
+  @@map(name: "labels")
+}
