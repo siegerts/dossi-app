@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -97,6 +98,7 @@ model Entity {
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, url])
+  @@fulltext([title])
   @@map(name: "entities")
 }
 
@@ -112,6 +114,7 @@ model Note {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
+  @@fulltext([content])
   @@map(name: "notes")
 }
 
@@ -154,8 +157,10 @@ model Label {
   userId    String
   entityId  String
 
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  entity Entity @relation(fields: [entityId], references: [id])
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entity Entity? @relation(fields: [entityId], references: [id])
 
+  @@unique([userId, name])
+  @@fulltext([name])
   @@map(name: "labels")
 }
