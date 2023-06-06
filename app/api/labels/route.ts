@@ -7,12 +7,10 @@ import { RequiresProPlanError } from "@/lib/exceptions"
 import prisma from "@/lib/prisma"
 
 const labelCreateSchema = z.object({
-  name: z.string().trim().max(50),
+  name: z.string().trim().min(1).max(50),
   description: z.string().trim().optional(),
   color: z.string().trim().optional(),
 })
-
-const labelFilterSchema = z.string()
 
 export async function GET(req: NextRequest) {
   try {
@@ -24,29 +22,11 @@ export async function GET(req: NextRequest) {
 
     const { user } = session
 
-    const filterQuery = req.nextUrl.searchParams.get("q")
-
-    let labels: any[] = []
-
-    if (filterQuery) {
-      // fts
-      const filter = labelFilterSchema.parse(filterQuery)
-      const query = `${filter}*`
-      labels = await prisma.label.findMany({
-        where: {
-          userId: user.id,
-          name: {
-            search: query,
-          },
-        },
-      })
-    } else {
-      labels = await prisma.label.findMany({
-        where: {
-          userId: user.id,
-        },
-      })
-    }
+    const labels = await prisma.label.findMany({
+      where: {
+        userId: user.id,
+      },
+    })
 
     return new Response(JSON.stringify(labels), { status: 200 })
   } catch (error) {
