@@ -119,6 +119,8 @@ export async function PATCH(
       return new Response(JSON.stringify(error.issues), { status: 422 })
     }
 
+    console.error(error)
+
     return new Response(null, { status: 500 })
   }
 }
