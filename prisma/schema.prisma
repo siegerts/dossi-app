@@ -85,8 +85,8 @@ model VerificationToken {
 
 model Entity {
   id        String   @id @default(cuid())
-  title     String?
-  url       String
+  title     String?  @db.Text
+  url       String   @db.VarChar(500)
   userId    String
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
@@ -105,8 +105,8 @@ model Entity {
 model Note {
   id        String   @id @default(cuid())
   // content   Json?
-  url       String
-  content   String?
+  url       String   @db.Text
+  content   String?  @db.Text
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
   userId    String
