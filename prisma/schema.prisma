@@ -84,18 +84,17 @@ model VerificationToken {
 }
 
 model Entity {
-  id        String   @id @default(cuid())
-  title     String?  @db.Text
-  url       String   @db.VarChar(500)
+  id        String             @id @default(cuid())
+  title     String?            @db.Text
+  url       String             @db.VarChar(500)
   userId    String
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-
   notes     Note[]
   pins      Pin[]
-  labels    Label[]
+  labels    LabelsOnEntities[]
   reminders Reminder[]
-  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime           @default(now()) @map(name: "created_at")
+  updatedAt DateTime           @default(now()) @map(name: "updated_at")
 
   @@unique([userId, url])
   @@fulltext([title])
@@ -147,20 +146,28 @@ model Reminder {
 }
 
 model Label {
-  id          String  @id @default(cuid())
+  id          String             @id @default(cuid())
   name        String
   description String?
   color       String?
-
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-  userId    String
-  entityId  String
-
-  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  entity Entity? @relation(fields: [entityId], references: [id])
+  userId      String
+  createdAt   DateTime           @default(now()) @map(name: "created_at")
+  updatedAt   DateTime           @default(now()) @map(name: "updated_at")
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entities    LabelsOnEntities[]
 
   @@unique([userId, name])
   @@fulltext([name])
   @@map(name: "labels")
+}
+
+model LabelsOnEntities {
+  entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  entityId  String
+  label     Label    @relation(fields: [labelId], references: [id], onDelete: Cascade)
+  labelId   String
+  userId    String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+
+  @@id([userId, entityId, labelId])
 }
