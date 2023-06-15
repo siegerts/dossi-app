@@ -49,8 +49,18 @@ export async function GET(req: NextRequest) {
           pins: {
             select: {
               id: true,
-              createdAt: true,
-              updatedAt: true,
+            },
+          },
+          labels: {
+            select: {
+              label: {
+                select: {
+                  id: true,
+                  name: true,
+                  color: true,
+                  description: true,
+                },
+              },
             },
           },
         },
