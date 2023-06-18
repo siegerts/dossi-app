@@ -26,6 +26,12 @@ export async function GET(req: NextRequest) {
       where: {
         userId: user.id,
       },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        color: true,
+      },
     })
 
     return new Response(JSON.stringify(labels), { status: 200 })
