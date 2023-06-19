@@ -36,6 +36,7 @@ export async function GET(req: NextRequest) {
         },
         select: {
           id: true,
+          title: true,
           createdAt: true,
           updatedAt: true,
           notes: {

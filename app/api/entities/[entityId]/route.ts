@@ -25,15 +25,14 @@ export async function GET(
     const { user } = session
     const { params } = routeContextSchema.parse(context)
 
-    // find the note that matches the id and belongs to the user
-    const note = await prisma.note.findFirst({
+    const entity = await prisma.entity.findFirst({
       where: {
         id: params.entityId,
         userId: user.id,
       },
     })
 
-    return new Response(JSON.stringify(note), { status: 200 })
+    return new Response(JSON.stringify(entity), { status: 200 })
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 })
