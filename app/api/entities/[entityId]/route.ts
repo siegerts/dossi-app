@@ -70,7 +70,7 @@ export async function PATCH(
               id: params.entityId,
             },
             data: {
-              title: body.title,
+              ...body,
             },
           },
         },
