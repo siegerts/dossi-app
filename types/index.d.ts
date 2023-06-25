@@ -34,9 +34,9 @@ export type SiteConfig = {
   ogImage: string
   mainNav: MainNavItem[]
   links: {
-    twitter?: string
-    github?: string
-    docs?: string
+    twitter: string
+    // github: string
+    // docs: string
   }
 }
 
