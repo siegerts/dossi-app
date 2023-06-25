@@ -4,7 +4,8 @@ import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { Features } from "@/components/landing/features"
+
+// import { Features } from "@/components/landing/features"
 
 // async function getGitHubStars(): Promise<string | null> {
 //   try {
