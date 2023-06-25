@@ -113,6 +113,7 @@ model Note {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
   @@fulltext([content])
   @@map(name: "notes")
 }
