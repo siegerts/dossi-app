@@ -26,8 +26,12 @@ export async function GET() {
       select: {
         id: true,
         createdAt: true,
-        title: true,
-        url: true,
+        entity: {
+          select: {
+            url: true,
+            title: true,
+          },
+        },
       },
       take: 10,
       orderBy: {
