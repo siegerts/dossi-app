@@ -2,6 +2,7 @@ cache
 .cache
 package.json
 package-lock.json
+pnpm-lock.yaml
 public
 CHANGELOG.md
 .yarn

@@ -1,9 +1,12 @@
+const { withContentlayer } = require("next-contentlayer")
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    appDir: true,
+  images: {
+    domains: ["avatars.githubusercontent.com"],
   },
+
   async headers() {
     return [
       {
@@ -27,4 +30,4 @@ const nextConfig = {
   },
 }
 
-export default nextConfig
+module.exports = withContentlayer(nextConfig)
