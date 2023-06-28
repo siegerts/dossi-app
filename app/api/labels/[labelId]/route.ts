@@ -108,7 +108,6 @@ export async function PATCH(
             data: {
               name: body.name,
               description: body.description,
-              color: body.color,
             },
           },
         },
