@@ -8,6 +8,7 @@ import prisma from "@/lib/prisma"
 
 const noteCreateSchema = z.object({
   content: z.string(),
+  title: z.string().optional(),
   url: z.string().url({ message: "Invalid url" }),
 })
 
@@ -81,7 +82,7 @@ export async function POST(req: Request) {
 
     const json = await req.json()
 
-    const { content, url } = noteCreateSchema.parse(json)
+    const { content, title, url } = noteCreateSchema.parse(json)
 
     const note = await prisma.note.create({
       data: {
@@ -95,7 +96,7 @@ export async function POST(req: Request) {
         entity: {
           connectOrCreate: {
             where: { userId_url: { userId: user.id, url } },
-            create: { url: url, userId: user.id },
+            create: { url: url, title: title, userId: user.id },
           },
         },
       },
