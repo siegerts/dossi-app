@@ -23,6 +23,11 @@ export async function GET() {
       where: {
         userId: user.id,
       },
+      select: {
+        id: true,
+        url: true,
+        createdAt: true,
+      },
     })
 
     return new Response(JSON.stringify(pins), { status: 200 })
