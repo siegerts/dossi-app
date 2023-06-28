@@ -1,4 +1,5 @@
 import * as React from "react"
+import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
@@ -15,7 +16,17 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             &copy; {new Date().getUTCFullYear()} All rights reserved.
           </p>
         </div>
+
         {/* <ModeToggle /> */}
+
+        <div className="flex items-center">
+          <div className="mr-3 mt-8 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
+            <Link href="/privacy">Privacy</Link>
+          </div>
+          <div className="mt-8 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
+            <Link href="/terms">Terms</Link>
+          </div>
+        </div>
       </div>
     </footer>
   )
