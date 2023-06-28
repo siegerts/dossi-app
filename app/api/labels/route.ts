@@ -69,13 +69,12 @@ export async function POST(req: Request) {
 
     const json = await req.json()
 
-    const { name, description, color } = labelCreateSchema.parse(json)
+    const { name, description } = labelCreateSchema.parse(json)
 
     const label = await prisma.label.create({
       data: {
         name,
         description,
-        color,
         user: {
           connect: {
             id: user.id,
