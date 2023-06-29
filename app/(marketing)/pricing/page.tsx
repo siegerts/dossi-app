@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { PricingTable } from "@/components/pricing-table"
 
@@ -30,11 +30,11 @@ export default function PricingPage() {
               <Icons.check className="mr-2 h-4 w-4" /> 500 Notes/month
             </li>
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> 1,000 Pins
+              <Icons.check className="mr-2 h-4 w-4" /> 100 Pins
             </li>
 
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> 200 Labels
+              <Icons.check className="mr-2 h-4 w-4" /> 50 Labels
             </li>
             <li className="flex items-center">
               <Icons.check className="mr-2 h-4 w-4" /> Enhanced Web Dashboard
@@ -54,9 +54,10 @@ export default function PricingPage() {
               Billed Monthly
             </p>
           </div>
-          <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+          <Button>Get Started</Button>
+          {/* <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
             Get Started
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
