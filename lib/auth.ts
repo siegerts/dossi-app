@@ -42,7 +42,7 @@ export const authOptions: NextAuthOptions = {
       return session
     },
     async jwt({ token, user }) {
-      // NEVER TOUCH THID
+      // NEVER TOUCH THIS - EVER
       const dbUser = await prisma.user.findFirst({
         where: {
           email: token.email,

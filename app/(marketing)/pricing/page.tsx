@@ -27,7 +27,7 @@ export default function PricingPage() {
           </h3>
           <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> 500 Notes/month
+              <Icons.check className="mr-2 h-4 w-4" /> 100 notes/month
             </li>
             <li className="flex items-center">
               <Icons.check className="mr-2 h-4 w-4" /> 100 Pins
