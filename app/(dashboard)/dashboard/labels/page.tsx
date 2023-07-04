@@ -85,24 +85,29 @@ export default async function BillingPage() {
       }
     }
 
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        labels: {
-          update: {
-            where: {
-              id: labelId,
-            },
-            data: {
-              name,
-              description,
+    try {
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          labels: {
+            update: {
+              where: {
+                id: labelId,
+              },
+              data: {
+                name,
+                description,
+              },
             },
           },
         },
-      },
-    })
-
-    revalidatePath("/dashboard/labels")
+      })
+      revalidatePath("/dashboard/labels")
+    } catch (error) {
+      return {
+        error: "Label may already exist",
+      }
+    }
   }
 
   return (

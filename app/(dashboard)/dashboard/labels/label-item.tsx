@@ -34,7 +34,6 @@ export function LabelItem({ updateLabel, removeLabel, userId, label }: any) {
       labelAttrs.name,
       labelAttrs.description
     )
-    console.log(result)
   }
 
   return (
