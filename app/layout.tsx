@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: `${siteConfig.url}/manifest.json`,
+  // manifest: `${siteConfig.url}/manifest.json`,
 }
 
 interface RootLayoutProps {
