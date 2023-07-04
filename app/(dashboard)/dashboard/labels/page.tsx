@@ -23,7 +23,7 @@ export const metadata = {
   description: "Manage label settings.",
 }
 
-export default async function BillingPage() {
+export default async function LabelsPage() {
   const user = await getCurrentUser()
   //   const [isEditing, setIsEditing] = useState(false)
 

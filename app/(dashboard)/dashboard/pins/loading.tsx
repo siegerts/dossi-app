@@ -2,10 +2,10 @@ import { CardSkeleton } from "@/components/card-skeleton"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
 
-export default function DashboardLabelsLoading() {
+export default function DashboardPinsLoading() {
   return (
     <DashboardShell>
-      <DashboardHeader heading="Labels" text="Manage label settings." />
+      <DashboardHeader heading="Pins" text="Manage pin settings." />
       <div className="grid gap-10">
         <CardSkeleton />
       </div>
