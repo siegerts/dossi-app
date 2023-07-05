@@ -23,7 +23,7 @@ export default function PricingPage() {
       <div className="grid w-full items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]">
         <div className="grid gap-6">
           <h3 className="text-xl font-bold sm:text-2xl">
-            What&apos;s included in the Professional plan
+            What&apos;s included in the PRO plan
           </h3>
           <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
             <li className="flex items-center">
@@ -62,7 +62,7 @@ export default function PricingPage() {
       </div>
       <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
-          Get started for Free, or unlock all features with the Professional.
+          Get started for Free, or unlock all features with the PRO plan.
         </p>
         {/* <PricingTable /> */}
       </div>
