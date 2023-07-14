@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Cross2Icon, DownloadIcon } from "@radix-ui/react-icons"
 import { Table } from "@tanstack/react-table"
 // @ts-ignore
@@ -48,9 +49,9 @@ export function DataTableToolbar<TData>({
       <div className="flex flex-1 items-center space-x-2">
         <Input
           placeholder="Filter..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          value={(table.getState().globalFilter as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
+            table.setGlobalFilter(String(event.target.value))
           }
           className="h-8 w-[150px] lg:w-[300px]"
         />

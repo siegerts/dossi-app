@@ -4,11 +4,9 @@ import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
 import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
 
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
-import { entitySchema } from "./data/schema"
 
 export const metadata = {
   title: "Notes Dashboard",
@@ -74,7 +72,7 @@ export default async function DashboardPage() {
         <DashboardHeader heading="Dashboard" text="" />
       </div>
 
-      <div className="mt-5 h-full flex-1 flex-col">
+      <div className="mt-5 h-full flex-1 flex-col p-2">
         {/* @ts-ignore */}
         <DataTable data={entities} columns={columns} labels={labels} />
       </div>

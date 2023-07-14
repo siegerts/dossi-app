@@ -1,5 +1,7 @@
 "use client"
 
+import { useState, useTransition } from "react"
+import { useRouter } from "next/navigation"
 import { DotsHorizontalIcon } from "@radix-ui/react-icons"
 import { Row } from "@tanstack/react-table"
 
@@ -8,17 +10,10 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
-import { entitySchema } from "../data/schema"
+import { Icons } from "@/components/icons"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -27,6 +22,31 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
+
+  const deleteEntity = async () => {
+    // alert the user
+    const confirm = window.confirm(
+      "Are you sure you want to delete this item? All of its data, including notes, will be permanently deleted."
+    )
+    // @ts-ignore
+    if (!confirm) return
+
+    // @ts-ignore
+    const resp = await fetch(`/api/entities/${row.original?.id}`, {
+      method: "DELETE",
+    })
+
+    if (resp.ok) {
+      startTransition(() => {
+        // Refresh the current route and fetch new data from the server without
+        // losing client-side browser or React state.
+        router.refresh()
+      })
+    }
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,12 +58,12 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuSeparator />
+        {/* <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DropdownMenuSeparator /> */}
 
-        <DropdownMenuItem>
-          Delete
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+        <DropdownMenuItem onClick={() => deleteEntity()}>
+          <Icons.trash className="mr-2 h-3.5 w-3.5 text-red-600" />
+          <span className="!hover:text-red-600 text-red-600">Delete</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
