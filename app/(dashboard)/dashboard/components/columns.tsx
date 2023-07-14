@@ -4,10 +4,9 @@ import Link from "next/link"
 import { ColumnDef } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
-import { Badge, badgeVariants } from "@/components/ui/badge"
+import { badgeVariants } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 
-import { labels, priorities, statuses } from "../data/data"
 import { Entity } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
