@@ -75,6 +75,7 @@ export default async function DashboardPage() {
       </div>
 
       <div className="mt-5 h-full flex-1 flex-col">
+        {/* @ts-ignore */}
         <DataTable data={entities} columns={columns} labels={labels} />
       </div>
     </>

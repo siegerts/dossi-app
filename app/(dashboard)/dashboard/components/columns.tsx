@@ -42,7 +42,7 @@ export const columns: ColumnDef<Entity>[] = [
     cell: ({ row }) => (
       <div className="w-[300px] truncate font-medium">
         <Link href={row.getValue("url")}>
-          {row.getValue("url").replace("https://github.com/", "")}
+          {row.getValue<string>("url").replace("https://github.com/", "")}
         </Link>
       </div>
     ),
@@ -97,7 +97,7 @@ export const columns: ColumnDef<Entity>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-          <div className="w-[50px] ">{row.getValue("notes").length}</div>
+          <div className="w-[50px] ">{row.getValue<any>("notes").length}</div>
         </div>
       )
     },
@@ -108,11 +108,8 @@ export const columns: ColumnDef<Entity>[] = [
       <DataTableColumnHeader column={column} title="Title" />
     ),
     cell: ({ row }) => {
-      // const label = labels.find((label) => label.value === row.original.label)
-
       return (
         <div className="flex space-x-2">
-          {/* {label && <Badge variant="outline">{label.label}</Badge>} */}
           <div className="max-w-[500px] truncate font-medium">
             {row.getValue("title")}
           </div>
@@ -150,12 +147,10 @@ export const columns: ColumnDef<Entity>[] = [
     },
     filterFn: (row, id, value) => {
       const labels: any = row.getValue(id)
-      // return labels.every((label: any) => value.some(label.label.name))
+
       return value.every((val: any) =>
         labels.some((label: any) => label.label.name === val)
       )
-
-      // ['feature-request-1'].includes()
     },
   },
 
