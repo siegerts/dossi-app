@@ -92,10 +92,9 @@ export function LabelItem({ updateLabel, removeLabel, userId, label }: any) {
               <DropdownMenuItem
                 onClick={() =>
                   startTransition(() => removeLabel(userId, label.id))
-                }
-                className="text-red-600 hover:text-red-600">
+                }>
                 <Icons.trash className="mr-2 h-3.5 w-3.5 text-red-600" />
-                Delete
+                <span className="!hover:text-red-600 text-red-600">Delete</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

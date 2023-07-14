@@ -34,10 +34,9 @@ export function PinItem({ removePin, userId, pin }: any) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-[160px]">
             <DropdownMenuItem
-              onClick={() => startTransition(() => removePin(userId, pin.id))}
-              className="text-red-600 hover:text-red-600">
+              onClick={() => startTransition(() => removePin(userId, pin.id))}>
               <Icons.trash className="mr-2 h-3.5 w-3.5 text-red-600" />
-              Delete
+              <span className="!hover:text-red-600 text-red-600">Delete</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
