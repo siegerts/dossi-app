@@ -46,7 +46,7 @@ export async function POST(req: Request) {
 
     // If user is on a free plan.
     // Check if user has reached limit of 3 posts.
-    // if (!subscriptionPlan?.isPro) {
+    // if (!subscriptionPlan?.isPaid) {
     //   const count = await prisma.reminders.count({
     //     where: {
     //       userId: user.id,

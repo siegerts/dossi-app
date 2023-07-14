@@ -68,16 +68,15 @@ export function BillingForm({
           <button
             type="submit"
             className={cn(buttonVariants())}
-            disabled={isLoading}
-          >
+            disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            {subscriptionPlan.isPro
+            {subscriptionPlan.isPaid
               ? "Manage Subscription"
               : "Upgrade to Professional"}
           </button>
-          {subscriptionPlan.isPro ? (
+          {subscriptionPlan.isPaid ? (
             <p className="rounded-full text-xs font-medium">
               {subscriptionPlan.isCanceled
                 ? "Your plan will be canceled on "

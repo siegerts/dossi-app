@@ -23,17 +23,23 @@ export async function getUserSubscriptionPlan(
     throw new Error("User not found")
   }
 
-  // Check if user is on a pro plan.
-  const isPro =
+  // Check if user is on a paid plan.
+  const isPaid =
     user.stripePriceId &&
     user.stripeCurrentPeriodEnd?.getTime() + 86_400_000 > Date.now()
 
-  const plan = isPro ? proPlan : freePlan
+  let plan = freePlan
+
+  if (isPaid) {
+    if (dbUser.stripePriceId === env.STRIPE_PRO_MONTHLY_PLAN_ID) {
+      plan = proPlan
+    }
+  }
 
   return {
     ...plan,
     ...user,
     stripeCurrentPeriodEnd: user.stripeCurrentPeriodEnd?.getTime(),
-    isPro,
+    isPaid,
   }
 }

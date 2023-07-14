@@ -21,7 +21,7 @@ export async function GET(req: Request) {
 
     // The user is on the pro plan.
     // Create a portal session to manage subscription.
-    if (subscriptionPlan.isPro && subscriptionPlan.stripeCustomerId) {
+    if (subscriptionPlan.isPaid && subscriptionPlan.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
         customer: subscriptionPlan.stripeCustomerId,
         return_url: billingUrl,

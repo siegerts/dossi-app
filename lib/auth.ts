@@ -3,7 +3,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { NextAuthOptions } from "next-auth"
 import GitHubProvider from "next-auth/providers/github"
 
-import { freePlan, proPlan } from "@/config/subscriptions"
+import { freePlan, proPlan, teamPlan } from "@/config/subscriptions"
 import prisma from "@/lib/prisma"
 
 export const authOptions: NextAuthOptions = {
@@ -56,12 +56,18 @@ export const authOptions: NextAuthOptions = {
         return token
       }
 
-      const isPro =
+      const isPaid =
         dbUser?.stripePriceId &&
         dbUser?.stripeCurrentPeriodEnd &&
         dbUser?.stripeCurrentPeriodEnd?.getTime() + 86_400_000 > Date.now()
 
-      const plan = isPro ? proPlan : freePlan
+      let plan = freePlan
+
+      if (isPaid) {
+        if (dbUser.stripePriceId === env.STRIPE_PRO_MONTHLY_PLAN_ID) {
+          plan = proPlan
+        }
+      }
 
       return {
         id: dbUser.id,
