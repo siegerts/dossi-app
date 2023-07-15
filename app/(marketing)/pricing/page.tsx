@@ -27,17 +27,17 @@ export default function PricingPage() {
           </h3>
           <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> 100 notes/month
+              <Icons.check className="mr-2 h-4 w-4" /> Unlimited notes
             </li>
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> 100 Pins
+              <Icons.check className="mr-2 h-4 w-4" /> Unlimited pins
             </li>
 
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> 50 Labels
+              <Icons.check className="mr-2 h-4 w-4" /> 100 Labels
             </li>
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> Enhanced Web Dashboard
+              <Icons.check className="mr-2 h-4 w-4" /> Web Dashboard
             </li>
             {/* <li className="flex items-center">
               <Icons.check className="mr-2 h-4 w-4" /> Webhook notifications
@@ -49,7 +49,7 @@ export default function PricingPage() {
         </div>
         <div className="flex flex-col gap-4 text-center">
           <div>
-            <h4 className="text-5xl font-bold">$15</h4>
+            <h4 className="text-5xl font-bold">$7</h4>
             <p className="text-sm font-medium text-muted-foreground">
               Billed Monthly
             </p>
