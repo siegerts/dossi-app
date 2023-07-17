@@ -24,7 +24,7 @@ export const freePlan: SubscriptionPlan = {
 
 // 15
 export const proPlan: SubscriptionPlan = {
-  name: "Pro",
+  name: "PRO",
   description: "The Pro plan has includes 100 notes/month.",
   stripePriceId: env.STRIPE_PRO_MONTHLY_PLAN_ID,
   notes: 1000,

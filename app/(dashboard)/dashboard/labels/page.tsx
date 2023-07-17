@@ -81,7 +81,7 @@ export default async function LabelsPage() {
     if (!result.success) {
       console.log(result.error)
       return {
-        error: "Schema validation error",
+        error: "Data is not the right format.",
       }
     }
 

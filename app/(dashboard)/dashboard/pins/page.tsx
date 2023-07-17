@@ -49,20 +49,26 @@ export default async function PinsPage() {
   async function removePin(userId: string, pinId: string) {
     "use server"
 
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        pins: {
-          delete: [
-            {
-              id: pinId,
-            },
-          ],
+    try {
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          pins: {
+            delete: [
+              {
+                id: pinId,
+              },
+            ],
+          },
         },
-      },
-    })
+      })
 
-    revalidatePath("/dashboard/pins")
+      revalidatePath("/dashboard/pins")
+    } catch (error) {
+      return {
+        error: "Pin was not deleted",
+      }
+    }
   }
 
   return (

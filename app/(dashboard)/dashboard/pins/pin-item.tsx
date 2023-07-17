@@ -10,9 +10,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { TableCell } from "@/components/ui/table"
+import { useToast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
 export function PinItem({ removePin, userId, pin }: any) {
+  const { toast } = useToast()
   let [isPending, startTransition] = useTransition()
 
   return (
@@ -34,7 +36,18 @@ export function PinItem({ removePin, userId, pin }: any) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-[160px]">
             <DropdownMenuItem
-              onClick={() => startTransition(() => removePin(userId, pin.id))}>
+              onClick={() =>
+                startTransition(() =>
+                  removePin(userId, pin.id).then((res: any) => {
+                    if (res?.error) {
+                      toast({
+                        title: "Uh oh! Something went wrong.",
+                        description: res.error,
+                      })
+                    }
+                  })
+                )
+              }>
               <Icons.trash className="mr-2 h-3.5 w-3.5 text-red-600" />
               <span className="!hover:text-red-600 text-red-600">Delete</span>
             </DropdownMenuItem>

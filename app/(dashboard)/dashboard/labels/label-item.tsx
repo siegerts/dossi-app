@@ -43,12 +43,12 @@ export function LabelItem({ updateLabel, removeLabel, userId, label }: any) {
 
     updateLabel(userId, label.id, labelAttrs.name, labelAttrs.description).then(
       (res: any) => {
-        if (res.error) {
+        if (res?.error) {
           toast({
             title: "Uh oh! Something went wrong.",
             description: res.error,
           })
-        } else {
+
           addOptimisticLabel({
             name: label.name,
             description: label.description,
