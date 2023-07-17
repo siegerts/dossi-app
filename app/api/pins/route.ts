@@ -6,7 +6,7 @@ import { RequiresProPlanError } from "@/lib/exceptions"
 import prisma from "@/lib/prisma"
 
 const pinCreateSchema = z.object({
-  url: z.string().url({ message: "Invalid url" }),
+  url: z.string().trim().url({ message: "Invalid url" }),
 })
 
 export async function GET() {

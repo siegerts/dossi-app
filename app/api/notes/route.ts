@@ -7,9 +7,9 @@ import { RequiresProPlanError } from "@/lib/exceptions"
 import prisma from "@/lib/prisma"
 
 const noteCreateSchema = z.object({
-  content: z.string(),
-  title: z.string().optional(),
-  url: z.string().url({ message: "Invalid url" }),
+  content: z.string().trim(),
+  title: z.string().trim().optional(),
+  url: z.string().trim().url({ message: "Invalid url" }),
 })
 
 const noteFilterSchema = z.string().url({ message: "Invalid url" })
