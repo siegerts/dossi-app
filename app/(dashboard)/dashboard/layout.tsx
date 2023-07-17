@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 
 import { dashboardConfig } from "@/config/dashboard"
 import { getCurrentUser } from "@/lib/session"
+import { Toaster } from "@/components/ui/toaster"
 import { MainNav } from "@/components/main-nav"
 import { DashboardNav } from "@/components/nav"
 import { SiteFooter } from "@/components/site-footer"
@@ -43,6 +44,7 @@ export default async function DashboardLayout({
         </main>
       </div>
       <SiteFooter className="border-t" />
+      <Toaster />
     </div>
   )
 }

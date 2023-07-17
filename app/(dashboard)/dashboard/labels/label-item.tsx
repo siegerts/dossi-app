@@ -15,9 +15,11 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { TableCell } from "@/components/ui/table"
+import { useToast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
 export function LabelItem({ updateLabel, removeLabel, userId, label }: any) {
+  const { toast } = useToast()
   let [isPending, startTransition] = useTransition()
   let [isEditing, setIsEditing] = useState(false)
   let [labelAttrs, setLabelAttrs] = useState({
@@ -39,11 +41,20 @@ export function LabelItem({ updateLabel, removeLabel, userId, label }: any) {
 
     addOptimisticLabel(labelAttrs)
 
-    const result = await updateLabel(
-      userId,
-      label.id,
-      labelAttrs.name,
-      labelAttrs.description
+    updateLabel(userId, label.id, labelAttrs.name, labelAttrs.description).then(
+      (res: any) => {
+        if (res.error) {
+          toast({
+            title: "Uh oh! Something went wrong.",
+            description: res.error,
+          })
+        } else {
+          addOptimisticLabel({
+            name: label.name,
+            description: label.description,
+          })
+        }
+      }
     )
   }
 
