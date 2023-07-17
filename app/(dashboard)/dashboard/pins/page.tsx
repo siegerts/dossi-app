@@ -29,8 +29,6 @@ export default async function PinsPage() {
     redirect(authOptions?.pages?.signIn || "/login")
   }
 
-  const subscriptionPlan = await getUserSubscriptionPlan(user.id)
-
   const pins = await prisma.pin.findMany({
     where: {
       userId: user.id,

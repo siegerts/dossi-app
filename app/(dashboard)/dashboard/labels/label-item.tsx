@@ -1,6 +1,10 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import {
+  experimental_useOptimistic as useOptimistic,
+  useState,
+  useTransition,
+} from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -21,12 +25,19 @@ export function LabelItem({ updateLabel, removeLabel, userId, label }: any) {
     description: label.description,
   })
 
+  const [optimisticLabel, addOptimisticLabel] = useOptimistic(
+    label,
+    (state, updatedLabel: any) => ({ ...state, ...updatedLabel })
+  )
+
   const updateLabelAttrs = async () => {
     if (
       labelAttrs.name === label.name &&
       labelAttrs.description === label.description
     )
       return
+
+    addOptimisticLabel(labelAttrs)
 
     const result = await updateLabel(
       userId,
@@ -40,15 +51,15 @@ export function LabelItem({ updateLabel, removeLabel, userId, label }: any) {
     <>
       {!isEditing ? (
         <>
-          <TableCell className="font-medium">{label.name}</TableCell>
-          <TableCell className="">{label?.description}</TableCell>
+          <TableCell className="font-medium">{optimisticLabel.name}</TableCell>
+          <TableCell className="">{optimisticLabel?.description}</TableCell>
         </>
       ) : (
         <>
           <TableCell className="font-medium">
             <Input
               type="text"
-              defaultValue={label.name}
+              defaultValue={optimisticLabel.name}
               onChange={(e) => {
                 setLabelAttrs({
                   ...labelAttrs,
@@ -60,7 +71,7 @@ export function LabelItem({ updateLabel, removeLabel, userId, label }: any) {
           <TableCell className="font-medium">
             <Input
               type="text"
-              defaultValue={label.description}
+              defaultValue={optimisticLabel.description}
               onChange={(e) => {
                 setLabelAttrs({
                   ...labelAttrs,
