@@ -28,13 +28,7 @@ export async function getUserSubscriptionPlan(
     user.stripePriceId &&
     user.stripeCurrentPeriodEnd?.getTime() + 86_400_000 > Date.now()
 
-  let plan = freePlan
-
-  if (isPaid) {
-    if (dbUser.stripePriceId === env.STRIPE_PRO_MONTHLY_PLAN_ID) {
-      plan = proPlan
-    }
-  }
+  const plan = isPaid ? proPlan : freePlan
 
   return {
     ...plan,

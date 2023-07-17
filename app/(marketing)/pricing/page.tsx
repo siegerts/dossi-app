@@ -62,7 +62,8 @@ export default function PricingPage() {
       </div>
       <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
-          Get started for Free, or unlock all features with the PRO plan.
+          Get started for Free, no credit card required. Or, unlock higher
+          limits with the PRO plan.
         </p>
         {/* <PricingTable /> */}
       </div>
