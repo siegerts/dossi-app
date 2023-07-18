@@ -31,7 +31,7 @@ import { DataTableToolbar } from "./data-table-toolbar"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
-  labels: { id: string; name: string }[]
+  labels: { id: string; name: string; _count: { entities: number } }[]
 }
 
 export function DataTable<TData, TValue>({

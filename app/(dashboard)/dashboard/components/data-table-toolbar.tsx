@@ -14,7 +14,7 @@ import { DataTableViewOptions } from "./data-table-view-options"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
-  labels: { id: string; name: string }[]
+  labels: { id: string; name: string; _count: { entities: number } }[]
 }
 
 export function DataTableToolbar<TData>({
@@ -26,6 +26,7 @@ export function DataTableToolbar<TData>({
   const labelOptions = labels.map((label) => ({
     label: label.name,
     value: label.name,
+    count: label._count.entities,
     id: label.id,
   }))
 

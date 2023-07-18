@@ -26,6 +26,9 @@ export default async function DashboardPage() {
     select: {
       id: true,
       name: true,
+      _count: {
+        select: { entities: true },
+      },
     },
   })
 

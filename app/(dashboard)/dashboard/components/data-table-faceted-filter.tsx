@@ -27,6 +27,7 @@ interface DataTableFacetedFilter<TData, TValue> {
   options: {
     label: string
     value: string
+    count: number
     icon?: React.ComponentType<{ className?: string }>
   }[]
 }
@@ -36,7 +37,7 @@ export function DataTableFacetedFilter<TData, TValue>({
   title,
   options,
 }: DataTableFacetedFilter<TData, TValue>) {
-  const facets = column?.getFacetedUniqueValues()
+  // const facets = column?.getFacetedUniqueValues()
 
   const selectedValues = new Set(column?.getFilterValue() as string[])
 
@@ -109,13 +110,12 @@ export function DataTableFacetedFilter<TData, TValue>({
                       )}>
                       <CheckIcon className={cn("h-4 w-4")} />
                     </div>
-                    {option.icon && (
-                      <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-                    )}
+
                     <span>{option.label}</span>
-                    {facets?.get(option.value) && (
-                      <span className="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs">
-                        {facets.get(option.value)}
+
+                    {option.count > 0 && (
+                      <span className="ml-auto flex h-4 w-4 items-center justify-center text-xs">
+                        {option.count}
                       </span>
                     )}
                   </CommandItem>

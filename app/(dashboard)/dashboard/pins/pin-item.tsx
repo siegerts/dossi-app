@@ -1,6 +1,7 @@
 "use client"
 
 import { useTransition } from "react"
+import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -21,7 +22,11 @@ export function PinItem({ removePin, userId, pin }: any) {
     <>
       <>
         <TableCell className="font-medium">{pin?.entity?.title}</TableCell>
-        <TableCell className="">{pin.url}</TableCell>
+        <TableCell className="">
+          <Link href={pin.url}>
+            {pin.url.replace("https://github.com/", "")}
+          </Link>
+        </TableCell>
       </>
 
       <TableCell className="flex-end flex items-center justify-between">
