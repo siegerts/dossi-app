@@ -52,7 +52,16 @@ export async function GET(req: NextRequest) {
       pins: account._count.pins,
     }
 
-    return new Response(JSON.stringify({ plan: plan.name, counts }), {
+    let limits: any
+    if (plan.name === "FREE") {
+      limits = {
+        notes: freePlan.notes,
+        labels: freePlan.labels,
+        pins: freePlan.pins,
+      }
+    }
+
+    return new Response(JSON.stringify({ plan: plan.name, counts, limits }), {
       status: 200,
     })
   } catch (error) {

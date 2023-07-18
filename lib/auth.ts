@@ -29,10 +29,7 @@ export const authOptions: NextAuthOptions = {
         session.user.name = token.name
         session.user.email = token.email
         session.user.image = token.picture
-        if (token.plan) {
-          // @ts-ignore
-          session.user.plan = token.plan
-        }
+
         if (token.role) {
           // @ts-ignore
           session.user.role = token.role
@@ -56,25 +53,11 @@ export const authOptions: NextAuthOptions = {
         return token
       }
 
-      const isPaid =
-        dbUser?.stripePriceId &&
-        dbUser?.stripeCurrentPeriodEnd &&
-        dbUser?.stripeCurrentPeriodEnd?.getTime() + 86_400_000 > Date.now()
-
-      let plan = freePlan
-
-      if (isPaid) {
-        if (dbUser.stripePriceId === env.STRIPE_PRO_MONTHLY_PLAN_ID) {
-          plan = proPlan
-        }
-      }
-
       return {
         id: dbUser.id,
         name: dbUser.name,
         email: dbUser.email,
         picture: dbUser.image,
-        plan: plan.name as string,
         role: ["ADMIN", "TEST"].includes(dbUser.role) ? dbUser.role : undefined,
       }
     },

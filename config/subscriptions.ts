@@ -3,11 +3,11 @@ import { env } from "@/env.mjs"
 import { SubscriptionPlan } from "types"
 
 export const freePlan: SubscriptionPlan = {
-  name: "Free",
+  name: "FREE",
   description:
     "The free plan is limited to 10 notes. Upgrade to the Dev plan for 100 notes.",
   stripePriceId: "",
-  notes: 10,
+  notes: 25,
   labels: 3,
   pins: 5,
 }
