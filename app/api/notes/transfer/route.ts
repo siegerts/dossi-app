@@ -32,6 +32,8 @@ export async function POST(req: NextRequest) {
       })
     }
 
+    console.log(title, url, from, to)
+
     // if there isnt an entity to
     // transfer to, create one
     let entity
