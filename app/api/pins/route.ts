@@ -7,6 +7,7 @@ import prisma from "@/lib/prisma"
 
 const pinCreateSchema = z.object({
   url: z.string().trim().url({ message: "Invalid url" }),
+  title: z.string().trim().optional(),
 })
 
 export async function GET() {
@@ -69,7 +70,7 @@ export async function POST(req: Request) {
 
     const json = await req.json()
 
-    const { url } = pinCreateSchema.parse(json)
+    const { url, title } = pinCreateSchema.parse(json)
 
     let pin
     try {
@@ -84,7 +85,7 @@ export async function POST(req: Request) {
           entity: {
             connectOrCreate: {
               where: { userId_url: { userId: user.id, url } },
-              create: { url: url, userId: user.id },
+              create: { url: url, title: title, userId: user.id },
             },
           },
         },
