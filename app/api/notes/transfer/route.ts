@@ -9,7 +9,7 @@ const notesTransferSchema = z.object({
   title: z.string().trim().optional(),
   url: z.string().trim().url({ message: "Invalid url" }),
   from: z.string().trim(),
-  to: z.string().trim(),
+  to: z.string().trim().optional(),
 })
 
 export async function POST(req: NextRequest) {
@@ -26,11 +26,22 @@ export async function POST(req: NextRequest) {
 
     const { title, url, from, to } = notesTransferSchema.parse(json)
 
-    await prisma.entity.upsert({
-      create: { url: url, title: title, userId: user.id },
-      update: {},
-      where: { userId_url: { userId: user.id, url } },
-    })
+    if (from === to) {
+      return new Response("Cannot transfer to the same entity", {
+        status: 422,
+      })
+    }
+
+    // if there isnt an entity to
+    // transfer to, create one
+    let entity
+    if (!to) {
+      entity = await prisma.entity.upsert({
+        create: { url: url, title: title, userId: user.id },
+        update: {},
+        where: { userId_url: { userId: user.id, url } },
+      })
+    }
 
     await prisma.note.updateMany({
       where: {
@@ -38,7 +49,7 @@ export async function POST(req: NextRequest) {
         entityId: from,
       },
       data: {
-        entityId: to,
+        entityId: to ? to : entity?.id,
       },
     })
 
