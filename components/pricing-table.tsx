@@ -7,69 +7,76 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Icons } from "@/components/icons"
 
 const features = [
   {
+    title: "Browser Extension",
+    description: "Integrate seamlessly with your web browser for easy access.",
+    free: <Icons.check className="h-4 w-4" />,
+    pro: <Icons.check className="h-4 w-4" />,
+  },
+  {
+    title: "Web Dashboard",
+    description: "Manage your notes, labels, and pins in a centralized space.",
+    free: <Icons.check className="h-4 w-4" />,
+    pro: <Icons.check className="h-4 w-4" />,
+  },
+  {
+    title: "Downloadable Notes",
+    description: "",
+    free: <Icons.check className="h-4 w-4" />,
+    pro: <Icons.check className="h-4 w-4" />,
+  },
+  {
     title: "Notes",
-    description: "notes",
-    free: "20/month",
-    pro: "500/month",
-    ent: "contact",
+    description: "Create and keep track of your thoughts, ideas, and tasks.",
+    free: "25",
+    pro: "Unlimited",
+  },
+  {
+    title: "Labels",
+    description: "Organize your notes effectively with custom labels.",
+    free: "3",
+    pro: "100",
   },
   {
     title: "Pins",
-    description: "pins",
-    free: "10",
-    pro: "1000",
-    ent: "contact",
-  },
-  {
-    title: "INV001",
-    description: "Paid",
-    free: "$250.00",
-    pro: "Credit Card",
-    ent: "contact",
-  },
-  {
-    title: "INV001",
-    description: "Paid",
-    free: "$250.00",
-    pro: "Credit Card",
-    ent: "contact",
-  },
-  {
-    title: "Priority Support",
-    description: "",
-    free: "-",
-    pro: "-",
-    ent: "contact",
+    description: "Highlight and access your important notes quickly with pins.",
+    free: "5",
+    pro: "Unlimited",
   },
 ]
 
 export function PricingTable() {
   return (
-    <Table>
-      {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[75px]"></TableHead>
-          <TableHead className="w-[75px]"></TableHead>
-          <TableHead className="w-[75px]">Free</TableHead>
-          <TableHead className="w-[75px]">Pro</TableHead>
-          <TableHead className="w-[75px]">Enterprise</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {features.map((feature, index) => (
-          <TableRow key={index}>
-            <TableCell className="font-medium">{feature.title}</TableCell>
-            <TableCell>{feature.description}</TableCell>
-            <TableCell>{feature.free}</TableCell>
-            <TableCell>{feature.pro}</TableCell>
-            <TableCell className="text-right">{feature.ent}</TableCell>
+    <>
+      <h2 className="text-4xl font-extrabold leading-tight tracking-tighter sm:text-4xl md:text-4xl lg:text-4xl">
+        Features & Limits
+      </h2>
+      <Table>
+        {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[75px]">Feature</TableHead>
+            <TableHead className="w-[200px]">Description</TableHead>
+            <TableHead className="w-[50px]">Free</TableHead>
+            <TableHead className="w-[50px]">Pro</TableHead>
+            {/* <TableHead className="w-[75px]">Enterprise</TableHead> */}
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {features.map((feature, index) => (
+            <TableRow key={index}>
+              <TableCell className="font-medium">{feature.title}</TableCell>
+              <TableCell>{feature.description}</TableCell>
+              <TableCell>{feature.free}</TableCell>
+              <TableCell>{feature.pro}</TableCell>
+              {/* <TableCell className="text-right">{feature.ent}</TableCell> */}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
   )
 }

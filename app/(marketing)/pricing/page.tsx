@@ -17,7 +17,8 @@ export default function PricingPage() {
           Simple, transparent pricing
         </h2>
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-          Unlock all features including the enhanced dashboard.
+          Get started for with the Browser Extension for Free, no credit card
+          required. Upgrade to PRO for Higher Limits.
         </p>
       </div>
       <div className="grid w-full items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]">
@@ -40,10 +41,10 @@ export default function PricingPage() {
               <Icons.check className="mr-2 h-4 w-4" /> Web Dashboard
             </li>
             {/* <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> Webhook notifications
-            </li> */}
-            {/* <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> Premium Support
+              <Icons.check className="mr-2 h-4 w-4" /> Activity list 
+            </li> 
+            <li className="flex items-center">
+              <Icons.check className="mr-2 h-4 w-4" />  Support
             </li> */}
           </ul>
         </div>
@@ -60,12 +61,17 @@ export default function PricingPage() {
           </Link> */}
         </div>
       </div>
+
+      <section className="container flex flex-col  gap-6 py-8 md:max-w-[64rem] md:py-12 lg:py-24">
+        <div className="mx-auto flex w-full flex-col gap-4 md:max-w-[58rem]">
+          <PricingTable />
+        </div>
+      </section>
+
       <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
-          Get started for Free, no credit card required. Or, unlock higher
-          limits with the PRO plan.
+          No credit card for Free plan. Upgrade to PRO for Higher Limits.
         </p>
-        {/* <PricingTable /> */}
       </div>
     </section>
   )
