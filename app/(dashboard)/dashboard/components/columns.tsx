@@ -58,7 +58,7 @@ export const columns: ColumnDef<Entity>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
+          <span className="max-w-[500px] truncate">
             {new Intl.DateTimeFormat(navigator.language, {
               dateStyle: "long",
               timeStyle: "short",
