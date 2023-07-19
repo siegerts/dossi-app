@@ -37,7 +37,7 @@ export default async function IndexPage() {
             {/* <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
               Get Started
             </Link> */}
-            <div className="mt-4 flex w-[400px] flex-wrap justify-between gap-4">
+            <div className="mt-4 flex w-full flex-wrap justify-between gap-4">
               <Image
                 src={"/images/chrome.png"}
                 alt="chrome"
