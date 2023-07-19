@@ -6,14 +6,7 @@ import { authOptions } from "@/lib/auth"
 import { RequiresProPlanError } from "@/lib/exceptions"
 import prisma from "@/lib/prisma"
 import { getUserSubscriptionPlan } from "@/lib/subscription"
-
-const noteCreateSchema = z.object({
-  content: z.string().trim(),
-  title: z.string().trim().optional(),
-  url: z.string().trim().url({ message: "Invalid url" }),
-})
-
-const noteFilterSchema = z.string().url({ message: "Invalid url" })
+import { noteCreateSchema } from "@/lib/validations/note"
 
 export async function GET(req: NextRequest) {
   try {
@@ -25,26 +18,11 @@ export async function GET(req: NextRequest) {
 
     const { user } = session
 
-    const filterURL = req.nextUrl.searchParams.get("url")
-
-    let notes: any[] = []
-
-    if (!filterURL) {
-      notes = await prisma.note.findMany({
-        where: {
-          userId: user.id,
-        },
-      })
-    } else {
-      // not my fav, but will filter for now
-      const url = noteFilterSchema.parse(filterURL)
-      notes = await prisma.note.findMany({
-        where: {
-          userId: user.id,
-          url,
-        },
-      })
-    }
+    let notes = await prisma.note.findMany({
+      where: {
+        userId: user.id,
+      },
+    })
 
     return new Response(JSON.stringify(notes), { status: 200 })
   } catch (error) {
@@ -88,7 +66,6 @@ export async function POST(req: Request) {
     const note = await prisma.note.create({
       data: {
         content,
-        url,
         user: {
           connect: {
             id: user.id,

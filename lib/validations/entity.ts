@@ -1,6 +1,6 @@
 import * as z from "zod"
 
-const urlSchema = z
+export const entityUrlSchema = z
   .string()
   .url({ message: "Invalid url" })
   .refine(
@@ -22,7 +22,7 @@ const urlSchema = z
 export const entityPatchSchema = z
   .object({
     title: z.string().max(500).trim().optional(),
-    url: urlSchema.optional(),
+    url: entityUrlSchema.optional(),
   })
   .refine((data) => Boolean(data.title) || Boolean(data.url), {
     message: "Either 'title' or 'url' must be provided",

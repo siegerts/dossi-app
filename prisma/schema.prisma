@@ -2,8 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -51,23 +50,22 @@ model Session {
 }
 
 model User {
-  id                     String     @id @default(cuid())
+  id                     String    @id @default(cuid())
   name                   String?
-  email                  String?    @unique
+  email                  String?   @unique
   emailVerified          DateTime?
   image                  String?
-  role                   Role       @default(USER)
-  createdAt              DateTime   @default(now()) @map(name: "created_at")
-  updatedAt              DateTime   @default(now()) @map(name: "updated_at")
-  stripeCustomerId       String?    @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?    @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?    @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime?  @map(name: "stripe_current_period_end")
+  role                   Role      @default(USER)
+  createdAt              DateTime  @default(now()) @map(name: "created_at")
+  updatedAt              DateTime  @default(now()) @map(name: "updated_at")
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
   entities               Entity[]
   notes                  Note[]
   pins                   Pin[]
   labels                 Label[]
-  reminders              Reminder[]
   Account                Account[]
   Session                Session[]
 
@@ -91,20 +89,17 @@ model Entity {
   notes     Note[]
   pins      Pin[]
   labels    LabelsOnEntities[]
-  reminders Reminder[]
   user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime           @default(now()) @map(name: "created_at")
   updatedAt DateTime           @default(now()) @map(name: "updated_at")
 
   @@unique([userId, url])
-  @@fulltext([title])
   @@map(name: "entities")
 }
 
 model Note {
-  id        String   @id @default(cuid())
-  // content   Json?
-  url       String   @db.Text
+  id String @id @default(cuid())
+
   content   String?  @db.Text
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @map(name: "updated_at")
@@ -114,7 +109,6 @@ model Note {
   entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
   @@index([userId])
-  @@fulltext([content])
   @@map(name: "notes")
 }
 
@@ -132,20 +126,6 @@ model Pin {
   @@map(name: "pins")
 }
 
-model Reminder {
-  id        String   @id @default(cuid())
-  remindAt  DateTime @map(name: "remind_at")
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-  url       String?
-  userId    String
-  entityId  String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
-
-  @@map(name: "reminders")
-}
-
 model Label {
   id          String             @id @default(cuid())
   name        String
@@ -157,7 +137,6 @@ model Label {
   entities    LabelsOnEntities[]
 
   @@unique([userId, name])
-  @@fulltext([name])
   @@map(name: "labels")
 }
 
