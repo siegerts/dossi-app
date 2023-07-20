@@ -13,20 +13,44 @@ const features = [
   {
     title: "Browser Extension",
     description: "Integrate seamlessly with your web browser for easy access.",
-    free: <Icons.check className="h-4 w-4" />,
-    pro: <Icons.check className="h-4 w-4" />,
+    free: (
+      <div className="flex items-center justify-center">
+        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      </div>
+    ),
+    pro: (
+      <div className="flex items-center justify-center">
+        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      </div>
+    ),
   },
   {
     title: "Web Dashboard",
     description: "Manage your notes, labels, and pins in a centralized space.",
-    free: <Icons.check className="h-4 w-4" />,
-    pro: <Icons.check className="h-4 w-4" />,
+    free: (
+      <div className="flex items-center justify-center">
+        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      </div>
+    ),
+    pro: (
+      <div className="flex items-center justify-center">
+        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      </div>
+    ),
   },
   {
     title: "Downloadable Notes",
     description: "",
-    free: <Icons.check className="h-4 w-4" />,
-    pro: <Icons.check className="h-4 w-4" />,
+    free: (
+      <div className="flex items-center justify-center">
+        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      </div>
+    ),
+    pro: (
+      <div className="flex items-center justify-center">
+        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      </div>
+    ),
   },
   {
     title: "Notes",
@@ -60,8 +84,8 @@ export function PricingTable() {
           <TableRow>
             <TableHead className="w-[75px]">Feature</TableHead>
             <TableHead className="w-[200px]">Description</TableHead>
-            <TableHead className="w-[50px]">Free</TableHead>
-            <TableHead className="w-[50px]">Pro</TableHead>
+            <TableHead className="w-[75px] text-center">Free</TableHead>
+            <TableHead className="w-[75px] text-center">Pro</TableHead>
             {/* <TableHead className="w-[75px]">Enterprise</TableHead> */}
           </TableRow>
         </TableHeader>
@@ -70,8 +94,12 @@ export function PricingTable() {
             <TableRow key={index}>
               <TableCell className="font-medium">{feature.title}</TableCell>
               <TableCell>{feature.description}</TableCell>
-              <TableCell>{feature.free}</TableCell>
-              <TableCell>{feature.pro}</TableCell>
+              <TableCell className="items-center text-center">
+                {feature.free}
+              </TableCell>
+              <TableCell className="justify-center text-center">
+                {feature.pro}
+              </TableCell>
               {/* <TableCell className="text-right">{feature.ent}</TableCell> */}
             </TableRow>
           ))}

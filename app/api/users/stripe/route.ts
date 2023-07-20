@@ -35,10 +35,9 @@ export async function GET(req: Request) {
     const stripeSession = await stripe.checkout.sessions.create({
       success_url: billingUrl,
       //   https://dev.to/stripe/getting-started-with-stripe-tax-2hi1
-      //   automatic_tax: {
-      //     enabled: true,
-
-      //   },
+      automatic_tax: {
+        enabled: true,
+      },
       cancel_url: billingUrl,
       payment_method_types: ["card"],
       mode: "subscription",
