@@ -38,7 +38,7 @@ const features = [
     title: "Labels",
     description: "Organize your notes effectively with custom labels.",
     free: "3",
-    pro: "100",
+    pro: "Unlimited",
   },
   {
     title: "Pins",
