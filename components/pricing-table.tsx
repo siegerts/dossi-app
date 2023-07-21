@@ -76,7 +76,7 @@ export function PricingTable() {
   return (
     <>
       <h2 className="text-4xl font-extrabold leading-tight tracking-tighter sm:text-4xl md:text-4xl lg:text-4xl">
-        Features & Limits
+        Features
       </h2>
       <Table>
         {/* <TableCaption>A list of your recent invoices.</TableCaption> */}

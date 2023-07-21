@@ -35,7 +35,7 @@ export default function PricingPage() {
             </li>
 
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> 100 Labels
+              <Icons.check className="mr-2 h-4 w-4" /> Unlimited Labels
             </li>
             <li className="flex items-center">
               <Icons.check className="mr-2 h-4 w-4" /> Web Dashboard
@@ -70,7 +70,7 @@ export default function PricingPage() {
 
       <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
-          No credit card for Free plan. Upgrade to PRO for Higher Limits.
+          No credit card for Free plan.
         </p>
       </div>
     </section>
