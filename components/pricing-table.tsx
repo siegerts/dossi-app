@@ -67,7 +67,7 @@ const features = [
   {
     title: "Pins",
     description: "Highlight and access your important notes quickly with pins.",
-    free: "5",
+    free: "10",
     pro: "Unlimited",
   },
 ]

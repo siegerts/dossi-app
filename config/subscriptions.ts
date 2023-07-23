@@ -9,7 +9,7 @@ export const freePlan: SubscriptionPlan = {
   stripePriceId: "",
   notes: 25,
   labels: 3,
-  pins: 5,
+  pins: 10,
 }
 
 // 7
