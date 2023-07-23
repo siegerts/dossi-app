@@ -32,10 +32,22 @@ export const metadata: Metadata = {
   keywords: [
     "issue triage",
     "private notes",
+    "private labels",
     "github issue triage",
     "chrome extension",
     "browser extension",
     "github notes",
+    "workflow management",
+    "project management",
+    "github productivity",
+    "github organization",
+    "open source management",
+    "github tools",
+    "developer tools",
+    "github enhancement",
+    "repository management",
+    "github triage dashboard",
+    "github pinning",
   ],
   authors: [
     {

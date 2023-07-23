@@ -28,10 +28,10 @@ export default function PricingPage() {
           </h3>
           <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> Unlimited notes
+              <Icons.check className="mr-2 h-4 w-4" /> Unlimited Notes
             </li>
             <li className="flex items-center">
-              <Icons.check className="mr-2 h-4 w-4" /> Unlimited pins
+              <Icons.check className="mr-2 h-4 w-4" /> Unlimited Pins
             </li>
 
             <li className="flex items-center">
