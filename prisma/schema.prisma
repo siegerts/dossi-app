@@ -36,6 +36,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
   @@map(name: "accounts")
 }
 
@@ -46,6 +47,7 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
   @@map(name: "sessions")
 }
 
@@ -94,6 +96,7 @@ model Entity {
   updatedAt DateTime           @default(now()) @map(name: "updated_at")
 
   @@unique([userId, url])
+  @@index([userId])
   @@map(name: "entities")
 }
 
@@ -109,6 +112,9 @@ model Note {
   entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@index([entityId])
+  @@index([userId, entityId])
+  @@index([userId, createdAt])
   @@map(name: "notes")
 }
 
@@ -123,6 +129,8 @@ model Pin {
   entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
   @@unique([userId, url])
+  @@index([userId])
+  @@index([entityId])
   @@map(name: "pins")
 }
 
@@ -137,6 +145,7 @@ model Label {
   entities    LabelsOnEntities[]
 
   @@unique([userId, name])
+  @@index([userId])
   @@map(name: "labels")
 }
 
@@ -149,4 +158,7 @@ model LabelsOnEntities {
   createdAt DateTime @default(now()) @map(name: "created_at")
 
   @@id([userId, entityId, labelId])
+  @@index([userId])
+  @@index([entityId])
+  @@index([labelId])
 }
