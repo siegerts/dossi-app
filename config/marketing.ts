@@ -7,6 +7,10 @@ export const marketingConfig: MarketingConfig = {
     //   href: "/#features",
     // },
     {
+      title: "Why dossi",
+      href: "/why-dossi",
+    },
+    {
       title: "Pricing",
       href: "/pricing",
     },
@@ -14,9 +18,9 @@ export const marketingConfig: MarketingConfig = {
     //   title: "Blog",
     //   href: "/blog",
     // },
-    // {
-    //   title: "Documentation",
-    //   href: "/docs",
-    // },
+    {
+      title: "Documentation",
+      href: "/docs",
+    },
   ],
 }

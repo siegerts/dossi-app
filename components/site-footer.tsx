@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { ModeToggle } from "@/components/mode-toggle"
 
@@ -20,6 +21,20 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
         {/* <ModeToggle /> */}
 
         <div className="flex items-center">
+          <Link
+            href={siteConfig.links.twitter}
+            target="_blank"
+            rel="noreferrer"
+            className="mr-3">
+            <div
+              className={buttonVariants({
+                size: "sm",
+                variant: "ghost",
+              })}>
+              <Icons.twitter className="h-5 w-5 " />
+              <span className="sr-only">Twitter</span>
+            </div>
+          </Link>
           <div className="mr-3 mt-8 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
             <Link href="/privacy">Privacy</Link>
           </div>
