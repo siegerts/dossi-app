@@ -33,36 +33,29 @@ export async function generateMetadata({
     return {}
   }
 
-  const url = env.NEXT_PUBLIC_APP_URL
-
-  //   const ogUrl = new URL(`${url}/api/og`)
-  //   ogUrl.searchParams.set("heading", page.title)
-  //   ogUrl.searchParams.set("type", siteConfig.name)
-  //   ogUrl.searchParams.set("mode", "light")
-
   return {
     title: page.title,
     description: page.description,
     openGraph: {
       title: page.title,
       description: page.description,
-      type: "article",
+      type: "website",
       url: absoluteUrl(page.slug),
       images: [
-        // {
-        //   url: ogUrl.toString(),
-        //   width: 1200,
-        //   height: 630,
-        //   alt: page.title,
-        // },
+        {
+          url: "https://www.dossi.dev/og.png",
+          width: 1200,
+          height: 630,
+          alt: page.title,
+        },
       ],
     },
-    // twitter: {
-    //   card: "summary_large_image",
-    //   title: page.title,
-    //   description: page.description,
-    //   images: [ogUrl.toString()],
-    // },
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.description,
+      images: ["https://www.dossi.dev/og.png"],
+    },
   }
 }
 

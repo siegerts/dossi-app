@@ -67,12 +67,19 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [
+      {
+        url: "https://www.dossi.dev/og.png",
+        width: 1200,
+        height: 600,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.jpg`],
+    images: [`${siteConfig.url}/og.png`],
     creator: "@dossidev",
   },
   icons: {
@@ -80,7 +87,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  // manifest: `${siteConfig.url}/manifest.json`,
+  manifest: `${siteConfig.url}/manifest.json`,
 }
 
 interface RootLayoutProps {

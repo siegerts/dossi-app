@@ -3,9 +3,9 @@ import { SiteConfig } from "types"
 export const siteConfig: SiteConfig = {
   name: "dossi",
   description:
-    "Supercharge your GitHub workflow with our Chrome extension, providing smart issue triage, advanced tools, and leveling up your project management efficiency.",
-  url: "https://dossi.dev",
-  ogImage: "",
+    "Your own private GitHub notes on every page. Privates notes and labels across all repos, issues, PRs, and discussions. Remember your ideas and thoughts in context, right where you need them.",
+  url: "https://www.dossi.dev",
+  ogImage: "https://www.dossi.dev/og.png",
   mainNav: [
     {
       title: "Home",
@@ -14,7 +14,5 @@ export const siteConfig: SiteConfig = {
   ],
   links: {
     twitter: "https://twitter.com/dossidev",
-    // github: "https://github.com/shadcn/ui",
-    // docs: "https://ui.shadcn.com",
   },
 }
