@@ -26,12 +26,14 @@ export default async function IndexPage() {
           </Link> */}
 
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
-            Enhance your open-source <br className="hidden sm:inline" />
-            GitHub workflow.{" "}
+            Your own private GitHub notes
+            <br className="hidden sm:inline" />
+            on every page.{" "}
           </h1>
           <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-            Privates notes and labels across all repos, issues, and pull
-            requests.
+            Privates notes and labels across all repos, issues, PRs, and
+            discussions. Remember your ideas and thoughts in context, right
+            where you need them.
           </p>
           <div className="space-x-4">
             {/* <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
