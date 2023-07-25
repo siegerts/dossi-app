@@ -35,10 +35,10 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               <span className="sr-only">Twitter</span>
             </div>
           </Link>
-          <div className="mr-3 mt-8 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
+          <div className="mr-3 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
             <Link href="/privacy">Privacy</Link>
           </div>
-          <div className="mt-8 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
+          <div className="text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
             <Link href="/terms">Terms</Link>
           </div>
         </div>

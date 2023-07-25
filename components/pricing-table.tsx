@@ -78,6 +78,11 @@ export function PricingTable() {
       <h2 className="text-4xl font-extrabold leading-tight tracking-tighter sm:text-4xl md:text-4xl lg:text-4xl">
         Features
       </h2>
+      <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
+        <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
+          No credit card required for Free plan.
+        </p>
+      </div>
       <Table>
         {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
         <TableHeader>

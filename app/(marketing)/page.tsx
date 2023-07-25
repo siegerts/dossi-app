@@ -27,7 +27,7 @@ export default async function IndexPage() {
 
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
             Your own private GitHub notes
-            <br className="hidden sm:inline" />
+            <br />
             on every page.{" "}
           </h1>
           <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
