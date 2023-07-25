@@ -43,20 +43,20 @@ export async function generateMetadata({
   return {
     title: page.title,
     description: page.description,
-    // openGraph: {
-    //   title: page.title,
-    //   description: page.description,
-    //   type: "article",
-    //   url: absoluteUrl(page.slug),
-    //   images: [
-    //     {
-    //       url: ogUrl.toString(),
-    //       width: 1200,
-    //       height: 630,
-    //       alt: page.title,
-    //     },
-    //   ],
-    // },
+    openGraph: {
+      title: page.title,
+      description: page.description,
+      type: "article",
+      url: absoluteUrl(page.slug),
+      images: [
+        // {
+        //   url: ogUrl.toString(),
+        //   width: 1200,
+        //   height: 630,
+        //   alt: page.title,
+        // },
+      ],
+    },
     // twitter: {
     //   card: "summary_large_image",
     //   title: page.title,

@@ -60,7 +60,6 @@ export default async function IndexPage() {
           </div>
         </div>
       </section>
-      {/* <Features /> */}
     </>
   )
 }
