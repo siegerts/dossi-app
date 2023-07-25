@@ -5,6 +5,7 @@ import * as z from "zod"
 import { authOptions } from "@/lib/auth"
 import { RequiresProPlanError } from "@/lib/exceptions"
 import prisma from "@/lib/prisma"
+import { getUserSubscriptionPlan } from "@/lib/subscription"
 
 const labelCreateSchema = z.object({
   name: z.string().trim().min(1).max(50),
@@ -51,21 +52,21 @@ export async function POST(req: Request) {
 
     const { user } = session
 
-    // const subscriptionPlan = await getUserSubscriptionPlan(user.id)
+    const subscriptionPlan = await getUserSubscriptionPlan(user.id)
 
     // If user is on a free plan.
-    // Check if user has reached limit of 3 posts.
-    // if (!subscriptionPlan?.isPaid) {
-    //   const count = await prisma.post.count({
-    //     where: {
-    //       userId: user.id,
-    //     },
-    //   })
+    // Check if user has reached limit of 3 labels.
+    if (!subscriptionPlan?.isPaid) {
+      const count = await prisma.label.count({
+        where: {
+          userId: user.id,
+        },
+      })
 
-    //   if (count >= 3) {
-    //     throw new RequiresProPlanError()
-    //   }
-    // }
+      if (count >= 3) {
+        throw new RequiresProPlanError()
+      }
+    }
 
     const json = await req.json()
 
