@@ -125,8 +125,8 @@ export default async function LabelsPage() {
           <div className="flex flex-wrap gap-3">
             <div>
               <p>
-                You haven't created any labels yet. Create a label using the
-                extension to get started.
+                You haven&apos;t created any labels yet. Create a label using
+                the extension to get started.
               </p>
             </div>
 

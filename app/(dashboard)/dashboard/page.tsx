@@ -90,8 +90,8 @@ export default async function DashboardPage() {
           <div className="flex flex-wrap gap-3">
             <div>
               <p>
-                You haven't created any notes yet. Create an item by creating a
-                note or pin using the extension.
+                You haven&apos;t created any notes yet. Create an item by
+                creating a note or pin using the extension.
               </p>
             </div>
 

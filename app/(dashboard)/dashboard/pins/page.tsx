@@ -88,7 +88,7 @@ export default async function PinsPage() {
           <div className="flex flex-wrap gap-3">
             <div>
               <p>
-                You haven't created any pins yet. Pin an item using the
+                You haven&apos;t created any pins yet. Pin an item using the
                 extension to get started.
               </p>
             </div>
