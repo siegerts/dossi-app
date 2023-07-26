@@ -1,11 +1,14 @@
 import { revalidatePath } from "next/cache"
+import Image from "next/image"
+import Link from "next/link"
 import { redirect } from "next/navigation"
 
 import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { getCurrentUser } from "@/lib/session"
-import { getUserSubscriptionPlan } from "@/lib/subscription"
+import { cn } from "@/lib/utils"
 import { labelPatchSchema } from "@/lib/validations/label"
+import { buttonVariants } from "@/components/ui/button"
 import {
   Table,
   TableBody,
@@ -14,6 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { DashboardHeader } from "@/components/header"
+import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
 
 import { LabelItem } from "./label-item"
@@ -30,8 +34,6 @@ export default async function LabelsPage() {
   if (!user) {
     redirect(authOptions?.pages?.signIn || "/login")
   }
-
-  const subscriptionPlan = await getUserSubscriptionPlan(user.id)
 
   const labels = await prisma.label.findMany({
     where: {
@@ -113,6 +115,37 @@ export default async function LabelsPage() {
   return (
     <DashboardShell>
       <DashboardHeader heading="Labels" text="Manage label settings." />
+      {labels && labels.length === 0 && (
+        <div className="my-2 flex w-full flex-col gap-y-2 rounded-md border p-3 lg:w-3/4">
+          <div className="flex items-center gap-2">
+            <Icons.tag className="h-5 w-5" />
+            <h3 className="text-sm font-semibold">No labels yet</h3>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <div>
+              <p>
+                You haven't created any labels yet. Create a label using the
+                extension to get started.
+              </p>
+            </div>
+
+            <Link
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+              href="https://chrome.google.com/webstore/detail/dossi/ogpcmecajeghflaaaennkmknfpeghffm">
+              <div className="flex items-center">
+                <Image
+                  src={"/images/chrome.png"}
+                  alt="chrome"
+                  width={25}
+                  height={25}
+                />
+                <div className="ml-2">Get the Chrome Extension</div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      )}
       <form>
         <Table>
           <TableHeader>
