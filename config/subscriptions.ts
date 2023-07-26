@@ -5,7 +5,7 @@ import { SubscriptionPlan } from "types"
 export const freePlan: SubscriptionPlan = {
   name: "FREE",
   description:
-    "The free plan is limited to 25 notes. Upgrade to the PRO plan for unlimited notes and higher usage limits.",
+    "The free plan is limited to 25 notes. Upgrade to the PRO plan for unlimited notes, labels, and pins.",
   stripePriceId: "",
   notes: 25,
   labels: 3,
@@ -16,7 +16,7 @@ export const freePlan: SubscriptionPlan = {
 export const proPlan: SubscriptionPlan = {
   name: "PRO",
   description:
-    "The Pro plan has includes unlimited notes and higher usage limits.",
+    "The PRO plan has includes unlimited notes and higher usage limits.",
   stripePriceId: env.STRIPE_PRO_MONTHLY_PLAN_ID,
   notes: 1000,
   labels: 1000,
