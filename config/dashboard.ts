@@ -5,12 +5,23 @@ export const dashboardConfig: DashboardConfig = {
     {
       title: "Documentation",
       href: "/docs",
+      mobileOnly: false,
     },
-    // {
-    //   title: "Support",
-    //   href: "/support",
-    //   disabled: true,
-    // },
+    {
+      title: "Notes",
+      href: "/dashboard",
+      mobileOnly: true,
+    },
+    {
+      title: "Pins",
+      href: "/dashboard/pins",
+      mobileOnly: true,
+    },
+    {
+      title: "Labels",
+      href: "/dashboard/labels",
+      mobileOnly: true,
+    },
   ],
   sidebarNav: [
     {
