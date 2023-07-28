@@ -42,6 +42,7 @@ export async function GET(req: Request) {
       payment_method_types: ["card"],
       mode: "subscription",
       billing_address_collection: "auto",
+      allow_promotion_codes: true,
 
       customer_email: session.user.email,
       line_items: [
