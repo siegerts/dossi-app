@@ -23,7 +23,8 @@ export default async function IndexPage() {
 
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
             Your own private GitHub notes
-            <br />
+            <br className="hidden md:inline" />
+            <span> </span>
             on every page.{" "}
           </h1>
           <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
@@ -38,7 +39,7 @@ export default async function IndexPage() {
               <div className="flex items-center">
                 <Image
                   src={"/images/chrome.png"}
-                  alt="chrome"
+                  alt="dossi browser extension"
                   width={25}
                   height={25}
                 />
