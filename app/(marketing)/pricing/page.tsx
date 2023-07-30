@@ -7,6 +7,9 @@ import { PricingTable } from "@/components/pricing-table"
 
 export const metadata = {
   title: "Pricing",
+  openGraph: {
+    url: "https://dossi.dev/pricing",
+  },
 }
 
 export default function PricingPage() {
