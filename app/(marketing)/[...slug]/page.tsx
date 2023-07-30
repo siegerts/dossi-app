@@ -40,10 +40,10 @@ export async function generateMetadata({
       title: page.title,
       description: page.description,
       type: "website",
-      url: absoluteUrl(page.slug),
+      url: `https://dossi.dev/${page.slugAsParams}`,
       images: [
         {
-          url: "https://www.dossi.dev/og.png",
+          url: "https://dossi.dev/og.png",
           width: 1200,
           height: 630,
           alt: page.title,
@@ -54,7 +54,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: page.title,
       description: page.description,
-      images: ["https://www.dossi.dev/og.png"],
+      images: ["https://dossi.dev/og.png"],
     },
   }
 }
