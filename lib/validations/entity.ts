@@ -1,7 +1,10 @@
 import * as z from "zod"
 
+// urls could possibly have a trailing
+// slash, so we need to remove it
 export const entityUrlSchema = z
   .string()
+  .trim()
   .url({ message: "Invalid url" })
   .refine(
     (value) => {
@@ -18,6 +21,7 @@ export const entityUrlSchema = z
         "URL's hostname must be a subdomain of github.com or github.com itself",
     }
   )
+  .transform((url) => (url.endsWith("/") ? url.slice(0, -1) : url))
 
 export const entityPatchSchema = z
   .object({

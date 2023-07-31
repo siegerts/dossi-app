@@ -5,7 +5,13 @@ import * as z from "zod"
 import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 
-const entityFilterSchema = z.string().url({ message: "Invalid url" })
+// urls could possibly have a trailing
+// slash, so we need to remove it
+const entityFilterSchema = z
+  .string()
+  .trim()
+  .url({ message: "Invalid url" })
+  .transform((url) => (url.endsWith("/") ? url.slice(0, -1) : url))
 
 export async function GET(req: NextRequest) {
   try {

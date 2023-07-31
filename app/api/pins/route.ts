@@ -5,9 +5,10 @@ import { authOptions } from "@/lib/auth"
 import { RequiresProPlanError } from "@/lib/exceptions"
 import prisma from "@/lib/prisma"
 import { getUserSubscriptionPlan } from "@/lib/subscription"
+import { entityUrlSchema } from "@/lib/validations/entity"
 
 const pinCreateSchema = z.object({
-  url: z.string().trim().url({ message: "Invalid url" }),
+  url: entityUrlSchema,
   title: z.string().trim().optional(),
 })
 
