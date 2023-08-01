@@ -47,6 +47,13 @@ export default async function IndexPage() {
               </div>
             </Link>
           </div>
+          <div className="text-sm text-muted-foreground">
+            Also available for{" "}
+            <Link href="/docs" className="underline">
+              Brave and Edge
+            </Link>
+            .
+          </div>
         </div>
       </section>
       <section id="video" className="px-4 py-8">
