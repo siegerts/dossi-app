@@ -28,9 +28,9 @@ export default async function IndexPage() {
             on every page.{" "}
           </h1>
           <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-            Private notes and labels across all repos, issues, PRs, and
-            discussions. Remember your ideas and thoughts in context, right
-            where you need them.
+            Be more efficient with private notes and labels across all repos,
+            issues, PRs, and discussions. Remember your ideas and thoughts in
+            context, right where you need them.
           </p>
           <div className="flex flex-wrap gap-3 lg:space-x-4">
             <Link

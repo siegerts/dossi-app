@@ -35,6 +35,8 @@ export const metadata: Metadata = {
     "private labels",
     "github issue triage",
     "chrome extension",
+    "microsoft edge extension",
+    "brave extension",
     "browser extension",
     "github notes",
     "workflow management",
