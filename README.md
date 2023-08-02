@@ -1,10 +1,22 @@
 # dossi-app
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+A Next.js 13 app for dossi.
+
+### Dev
+
+```
+pnpm dev
+```
+
+### Stripe
+
+```
+stripe listen --forward-to localhost:3000/api/webhooks/stripe
+```
 
 ## Usage
 
-## Features
+## Includes
 
 - Radix UI Primitives
 - Tailwind CSS
