@@ -90,8 +90,8 @@ export default async function DashboardPage() {
           <div className="flex flex-wrap gap-3">
             <div>
               <p>
-                You haven&apos;t created any notes yet. Create an item by
-                creating a note or pin using the extension.
+                You haven&apos;t created any notes yet. Get started by
+                installing the browser extension.
               </p>
             </div>
 
@@ -108,11 +108,25 @@ export default async function DashboardPage() {
                 <div className="ml-2">Get the Chrome Extension</div>
               </div>
             </Link>
+
+            <Link
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+              href="https://addons.mozilla.org/en-US/firefox/addon/dossi/">
+              <div className="flex items-center">
+                <Image
+                  src={"/images/firefox.png"}
+                  alt="dossi firefox extension"
+                  width={25}
+                  height={25}
+                />
+                <div className="ml-2">Get the Firefox Extension</div>
+              </div>
+            </Link>
           </div>
         </div>
       )}
 
-      <div className="mt-5 h-full flex-1 flex-col p-2">
+      <div className="mt-5 h-full overflow-x-scroll p-2">
         {/* @ts-ignore */}
         <DataTable data={entities} columns={columns} labels={labels} />
       </div>

@@ -143,6 +143,20 @@ export default async function LabelsPage() {
                 <div className="ml-2">Get the Chrome Extension</div>
               </div>
             </Link>
+
+            <Link
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+              href="https://addons.mozilla.org/en-US/firefox/addon/dossi/">
+              <div className="flex items-center">
+                <Image
+                  src={"/images/firefox.png"}
+                  alt="dossi firefox extension"
+                  width={25}
+                  height={25}
+                />
+                <div className="ml-2">Get the Firefox Extension</div>
+              </div>
+            </Link>
           </div>
         </div>
       )}
