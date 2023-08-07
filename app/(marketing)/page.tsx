@@ -70,7 +70,7 @@ export default async function IndexPage() {
           </div>
         </div>
       </section>
-      <section id="video" className="px-4 py-8">
+      <section id="video" className="w-100 mx-auto px-4 py-8 md:w-5/6 lg:w-3/4">
         <div
           className="video overflow-hidden rounded-lg shadow-xl"
           style={{
