@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import Image from "next/image"
 import Link from "next/link"
 
@@ -7,7 +9,7 @@ import { buttonVariants } from "@/components/ui/button"
 export default async function IndexPage() {
   return (
     <>
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+      <section className="lg:pb-15 space-y-4 pb-8 pt-6 md:pb-12 md:pt-10 lg:pt-32">
         <div className="container flex max-w-[64rem] flex-col items-start gap-4 ">
           {/* <Link
             href="https://chrome.google.com/webstore/detail/dossi/ogpcmecajeghflaaaennkmknfpeghffm"
@@ -67,6 +69,21 @@ export default async function IndexPage() {
               Brave and Edge
             </Link>
             .
+          </div>
+
+          <div className="my-3 flex flex-wrap gap-3 lg:space-x-4">
+            <a
+              href="https://www.producthunt.com/posts/dossi?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dossi"
+              target="_blank"
+              rel="noreferrer">
+              <img
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=410685&theme=light"
+                alt="dossi - Your&#0032;own&#0032;private&#0032;GitHub&#0032;notes&#0032;on&#0032;every&#0032;page | Product Hunt"
+                // style="width: 250px; height: 54px;"
+                width="250"
+                height="54"
+              />
+            </a>
           </div>
         </div>
       </section>
