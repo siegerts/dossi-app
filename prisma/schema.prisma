@@ -1,20 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
-}
-
-enum Role {
-  ADMIN
-  USER
-  TEST
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Account {
@@ -30,8 +20,8 @@ model Account {
   scope             String?
   id_token          String?  @db.Text
   session_state     String?
-  createdAt         DateTime @default(now()) @map(name: "created_at")
-  updatedAt         DateTime @default(now()) @map(name: "updated_at")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @default(now()) @map("updated_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -52,18 +42,18 @@ model Session {
 }
 
 model User {
-  id                     String    @id @default(cuid())
+  id                     String     @id @default(cuid())
   name                   String?
-  email                  String?   @unique
+  email                  String?    @unique
   emailVerified          DateTime?
   image                  String?
-  role                   Role      @default(USER)
-  createdAt              DateTime  @default(now()) @map(name: "created_at")
-  updatedAt              DateTime  @default(now()) @map(name: "updated_at")
-  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+  role                   users_role @default(USER)
+  createdAt              DateTime   @default(now()) @map(name: "created_at")
+  updatedAt              DateTime   @default(now()) @map(name: "updated_at")
+  stripeCustomerId       String?    @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?    @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?    @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime?  @map(name: "stripe_current_period_end")
   entities               Entity[]
   notes                  Note[]
   pins                   Pin[]
@@ -135,14 +125,15 @@ model Pin {
 }
 
 model Label {
-  id          String             @id @default(cuid())
+  id          String   @id @default(cuid())
   name        String
   description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @map("updated_at")
   userId      String
-  createdAt   DateTime           @default(now()) @map(name: "created_at")
-  updatedAt   DateTime           @default(now()) @map(name: "updated_at")
-  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
-  entities    LabelsOnEntities[]
+
+  user     User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entities LabelsOnEntities[]
 
   @@unique([userId, name])
   @@index([userId])
@@ -150,10 +141,11 @@ model Label {
 }
 
 model LabelsOnEntities {
-  entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
-  entityId  String
-  label     Label    @relation(fields: [labelId], references: [id], onDelete: Cascade)
-  labelId   String
+  entity   Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  entityId String
+  label    Label  @relation(fields: [labelId], references: [id], onDelete: Cascade)
+  labelId  String
+
   userId    String
   createdAt DateTime @default(now()) @map(name: "created_at")
 
@@ -161,4 +153,10 @@ model LabelsOnEntities {
   @@index([userId])
   @@index([entityId])
   @@index([labelId])
+}
+
+enum users_role {
+  ADMIN
+  USER
+  TEST
 }
