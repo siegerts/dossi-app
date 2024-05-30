@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Entity } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
+import { DataTableViewNotes } from "./data-table-view-notes"
 
 export const columns: ColumnDef<Entity>[] = [
   {
@@ -96,8 +97,11 @@ export const columns: ColumnDef<Entity>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
-          <div className="w-[50px] ">{row.getValue<any>("notes").length}</div>
+        <div className="flex items-center space-x-2">
+          <div>{row.getValue<any>("notes").length}</div>
+          {row.getValue<any>("notes").length > 0 && (
+            <DataTableViewNotes row={row} />
+          )}
         </div>
       )
     },
