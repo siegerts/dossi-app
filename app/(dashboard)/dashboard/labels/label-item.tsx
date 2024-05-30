@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  experimental_useOptimistic as useOptimistic,
-  useState,
-  useTransition,
-} from "react"
+import { useOptimistic, useState, useTransition } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
