@@ -12,9 +12,9 @@
     <br />
     <a href="https://dossi.dev">Website</a>
     |
-    <a href="https://github.com/dossi-dev/dossi-app">Web app</a>
+    <a href="https://github.com/siegerts/dossi-ext">Browser extension</a>
     |
-     <a href="https://github.com/dossi-dev/dossi-app/issues">Feedback</a>
+     <a href="https://github.com/siegerts/dossi-app/issues">Feedback</a>
   </p>
 
 ## Introduction
@@ -39,7 +39,7 @@ This is the backend and web app for the dossi.dev browser extension.
 - [Prisma](https://www.prisma.io/) – database orm and client
 - [NextAuth.js](https://next-auth.js.org/) – auth
 - [Stripe](https://stripe.com/) – payments
-- [Vercel](https://vercel.com/) – deployments
+- [Vercel](https://vercel.com/) – deployments and hosting
 
 
 ## Getting Started
