@@ -11,8 +11,8 @@ export default async function IndexPage() {
     <>
       <section className="lg:pb-15 space-y-4 pb-8 pt-6 md:pb-12 md:pt-10 lg:pt-32">
         <div className="container flex max-w-[64rem] flex-col items-start gap-4 ">
-          {/* <Link
-            href="https://chrome.google.com/webstore/detail/dossi/ogpcmecajeghflaaaennkmknfpeghffm"
+          <Link
+            href="https://www.xiegerts.com/post/dossi-is-now-open-source/"
             className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
             target="_blank">
             🎉
@@ -20,8 +20,8 @@ export default async function IndexPage() {
               data-orientation="vertical"
               role="none"
               className="mx-2 h-4 w-[1px] shrink-0 bg-border"></div>
-            Download the Free Chrome Extension
-          </Link> */}
+            dossi is now open source!``
+          </Link>
 
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
             Your own private GitHub notes
