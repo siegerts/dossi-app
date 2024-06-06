@@ -20,7 +20,7 @@ export default async function IndexPage() {
               data-orientation="vertical"
               role="none"
               className="mx-2 h-4 w-[1px] shrink-0 bg-border"></div>
-            dossi is now open source!``
+            dossi is now open source!
           </Link>
 
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
