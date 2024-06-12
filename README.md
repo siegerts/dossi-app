@@ -14,7 +14,7 @@
     |
     <a href="https://dossi.dev">Website</a>
     |
-    <a href="https://github.com/siegerts/dossi-ext">Browser extension</a>
+    <a href="https://github.com/siegerts/dossi-ext">Browser extension repo</a>
     |
      <a href="https://github.com/siegerts/dossi-app/issues">Feedback</a>
   </p>
