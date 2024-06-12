@@ -25,10 +25,10 @@ This is the backend and web app for the dossi.dev browser extension.
 
 ## Functionality
 
-- GitHub auth integration with NextAuth.js
+- Auth integration with NextAuth.js
 - Label management
 - Pin management
-- Note management, search and filtering, and download
+- Note management, search and filtering, and download (csv, json)
 - Stripe integration for subscription management with customer portal
 
 ## Tech Stack
@@ -37,7 +37,7 @@ This is the backend and web app for the dossi.dev browser extension.
 - [TypeScript](https://www.typescriptlang.org/) – language
 - [shadcn/ui](https://ui.shadcn.com/) – UI components
 - [Tailwind](https://tailwindcss.com/) – CSS
-- [Neon Postgres](https://neon.tech/) – database
+- Postgres – database
 - [Prisma](https://www.prisma.io/) – database orm and client
 - [NextAuth.js](https://next-auth.js.org/) – auth
 - [Stripe](https://stripe.com/) – payments
