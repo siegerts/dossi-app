@@ -10,6 +10,8 @@
     <a href="https://dossi.dev"><strong>Learn more »</strong></a>
     <br />
     <br />
+    <a href="https://chromewebstore.google.com/detail/dossi-private-github-note/ogpcmecajeghflaaaennkmknfpeghffm">Chrome Extension</a>
+    |
     <a href="https://dossi.dev">Website</a>
     |
     <a href="https://github.com/siegerts/dossi-ext">Browser extension</a>
@@ -40,7 +42,6 @@ This is the backend and web app for the dossi.dev browser extension.
 - [NextAuth.js](https://next-auth.js.org/) – auth
 - [Stripe](https://stripe.com/) – payments
 - [Vercel](https://vercel.com/) – deployments and hosting
-
 
 ## Getting Started
 
@@ -98,13 +99,11 @@ pnpm install
 pnpm prisma generate
 ```
 
-
 #### Start the development server
 
 ```
 pnpm dev
 ```
-
 
 ## License
 
