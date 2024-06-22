@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/uninstall", "/success-install", "/terms", "/privacy"],
     },
     sitemap: "https://dossi.dev/sitemap.xml",
   }
