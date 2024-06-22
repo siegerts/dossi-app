@@ -36,6 +36,11 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             </div>
           </Link>
           <div className="mr-3 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
+            <Link href="mailto:contact@dossi.dev?subject=Team Plan">
+              Team Plans
+            </Link>
+          </div>
+          <div className="mr-3 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
             <Link href="/privacy">Privacy</Link>
           </div>
           <div className="mr-3 text-sm leading-5 text-gray-400 md:order-1 md:mt-0">
