@@ -43,10 +43,10 @@ export default async function BillingPage() {
         {process.env.NODE_ENV === "development" && (
           <Alert className="!pl-14">
             <Icons.warning />
-            <AlertTitle>This is a demo app.</AlertTitle>
+            <AlertTitle>This is the local app.</AlertTitle>
             <AlertDescription>
-              This is a test environment. You can find a list of test card
-              numbers on the{" "}
+              This is the local dev environment. You can find a list of test
+              card numbers on the{" "}
               <a
                 href="https://stripe.com/docs/testing#cards"
                 target="_blank"
