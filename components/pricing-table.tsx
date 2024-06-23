@@ -14,13 +14,15 @@ const features = [
     title: "Browser Extension",
     description: "Integrate seamlessly with your web browser for easy access.",
     free: (
-      <div className="flex items-center justify-center">
-        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      <div className="inline-flex items-center inline justify-center bg-gray-200 px-2 py-1 rounded-full text-gray-800 font-medium">
+        <Icons.check className="mr-2 h-4 w-4" />
+        <span>Included</span>
       </div>
     ),
     pro: (
-      <div className="flex items-center justify-center">
-        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      <div className="inline-flex items-center inline justify-center bg-gray-200 px-2 py-1 rounded-full text-gray-800 font-medium">
+        <Icons.check className="mr-2 h-4 w-4" />
+        <span>Included</span>
       </div>
     ),
   },
@@ -28,27 +30,48 @@ const features = [
     title: "Web Dashboard",
     description: "Manage your notes, labels, and pins in a centralized space.",
     free: (
-      <div className="flex items-center justify-center">
-        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      <div className="inline-flex items-center inline justify-center bg-gray-200 px-2 py-1 rounded-full text-gray-800 font-medium">
+        <Icons.check className="mr-2 h-4 w-4" />
+        <span>Included</span>
       </div>
     ),
     pro: (
-      <div className="flex items-center justify-center">
-        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      <div className="inline-flex items-center inline justify-center bg-gray-200 px-2 py-1 rounded-full text-gray-800 font-medium">
+        <Icons.check className="mr-2 h-4 w-4" />
+        <span>Included</span>
       </div>
     ),
   },
   {
     title: "Downloadable Notes",
-    description: "",
+    description: "Download your notes in CSV or JSON format.",
     free: (
-      <div className="flex items-center justify-center">
-        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      <div className="inline-flex items-center inline justify-center bg-gray-200 px-2 py-1 rounded-full text-gray-800 font-medium">
+        <Icons.check className="mr-2 h-4 w-4" />
+        <span>Included</span>
       </div>
     ),
     pro: (
-      <div className="flex items-center justify-center">
-        <Icons.check className="mr-2 h-4 w-4" /> <span>Included</span>
+      <div className="inline-flex items-center inline justify-center bg-gray-200 px-2 py-1 rounded-full text-gray-800 font-medium">
+        <Icons.check className="mr-2 h-4 w-4" />
+        <span>Included</span>
+      </div>
+    ),
+  },
+  {
+    title: "Bring your own OpenAI API key",
+    description:
+      "Use your own OpenAI API key and custom prompts for AI-powered features.",
+    free: (
+      <div className="inline-flex items-center inline justify-center bg-gray-200 px-2 py-1 rounded-full text-gray-800 font-medium">
+        <Icons.check className="mr-2 h-4 w-4" />
+        <span>Included</span>
+      </div>
+    ),
+    pro: (
+      <div className="inline-flex items-center inline justify-center bg-gray-200 px-2 py-1 rounded-full text-gray-800 font-medium">
+        <Icons.check className="mr-2 h-4 w-4" />
+        <span>Included</span>
       </div>
     ),
   },
@@ -56,19 +79,37 @@ const features = [
     title: "Notes",
     description: "Create and keep track of your thoughts, ideas, and tasks.",
     free: "25",
-    pro: "Unlimited",
+    pro: (
+      <div className="flex items-center justify-center">
+        <span className="bg-green-200 px-2 py-1 rounded-full text-green-800 font-medium">
+          Unlimited
+        </span>
+      </div>
+    ),
   },
   {
     title: "Labels",
     description: "Organize your notes effectively with custom labels.",
     free: "3",
-    pro: "Unlimited",
+    pro: (
+      <div className="flex items-center justify-center">
+        <span className="bg-green-200 px-2 py-1 rounded-full text-green-800 font-medium">
+          Unlimited
+        </span>
+      </div>
+    ),
   },
   {
     title: "Pins",
     description: "Highlight and access your important notes quickly with pins.",
     free: "10",
-    pro: "Unlimited",
+    pro: (
+      <div className="flex items-center justify-center">
+        <span className="bg-green-200 px-2 py-1 rounded-full text-green-800 font-medium">
+          Unlimited
+        </span>
+      </div>
+    ),
   },
 ]
 
